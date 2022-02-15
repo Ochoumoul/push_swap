@@ -24,6 +24,7 @@ int    push_el(stack *stack, int value, char s)
     t_node *node;
 
     ft_print_inst('p',s);
+    // The function above will be responsible for printing the instruction.
     node = malloc(sizeof(t_node));
     if (!node)
         return (0);
@@ -33,17 +34,7 @@ int    push_el(stack *stack, int value, char s)
     return (1); // 1 means that element have been pushed succesfully.
 }
 
-void    swap_el(stack *stack, char s)
-{
-    int tmp;
-    
-    ft_print_inst('s',s);
-    tmp = (*stack)->value;
-    (*stack)->value = (*stack)->next->value;
-    (*stack)->next->value = tmp;
-}
-
-int pop_el(stack *stack)
+int     pop_el(stack *stack)
 {
     if (*stack == NULL) return STACK_EMPTY;
 
@@ -52,6 +43,36 @@ int pop_el(stack *stack)
     *stack = (*stack)->next;
     free(tmp);
     return (result);
+}
+
+// The double swap function like ss should take 2 stacks as an argument.
+
+void    swap_el(stack *stack, char s)
+{
+    int tmp;
+    
+    ft_print_inst('s',s);
+    // The function above will be responsible for printing the instruction.
+    tmp = (*stack)->value;
+    (*stack)->value = (*stack)->next->value;
+    (*stack)->next->value = tmp;
+}
+
+int    rotate_el(stack *stack, char s)
+{
+    t_node *node;
+
+    ft_print_inst('r',s);
+    // The function above will be responsible for printing the instruction.
+    node = malloc(sizeof(t_node));
+    if (!node)
+        return (0);
+    node->value = pop_el(stack);
+    node->next = NULL;
+    while (*stack != NULL)
+        *stack = (*stack)->next;
+    *stack = node;
+    return (1);
 }
 
 int main(void)
@@ -65,11 +86,11 @@ int main(void)
     push_el(&a, 5, 'a');
     push_el(&a, 17, 'a');
     push_el(&a, 45, 'a');
-    swap_el(&a, 'a'); 
-     push_el(&b, 5, 'b');
-    push_el(&b, 17, 'b');
-    push_el(&b, 45, 'b');
-    swap_el(&b, 'b'); 
+    push_el(&a, 51, 'a');
+    push_el(&a, 12, 'a');
+    push_el(&a, 19, 'a');
+    rotate_el(&a, 'a');
+    push_el(&b, 51, 'b');
 
     printf("===========Stack A=========\n");
     while ((result = pop_el(&a)) != STACK_EMPTY)

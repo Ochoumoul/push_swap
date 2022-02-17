@@ -1,54 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <limits.h>
 #include <stdbool.h>
 
-#define STACK_EMPTY INT_MIN
-
-typedef struct node 
-{	
-	int value;
-	struct node *next;
-} node;
-
-typedef node *stack;
-
-bool push(stack *stack,int value)
+int main(int argc, char **argv)
 {
-	node *newnode = malloc(sizeof(node));
-	if (newnode == NULL) return (false);
-	printf("%p\n", *stack);
-	newnode->value = value;
-	newnode->next = *stack;
-	*stack = newnode;
-	return (true);
-}
+	int i;
 
-int pop(stack *stack)
-{
-	if (*stack == NULL) return STACK_EMPTY;
-	int result = (*stack)->value;
-	
-	node *tmp = *stack;
-	*stack = (*stack)->next;
-	free(tmp);
-	return (result);
-}
-
-int	main()
-{
-	stack a = NULL;
-	stack b = NULL;
-	push(&a,53);
-	push(&a,82);
-	push(&a,12);
-	push(&b,63);
-	push(&b,812);
-	push(&b,2);
-	int t;
-	while (((t = pop(&b)) != STACK_EMPTY))
+	i = 0;
+	if (argc > 2)
 	{
-		printf("t = %d\n", t);
+		while (argv[i])
+		{
+			
+		}
 	}
+	else
+		printf("Invalid arguments\n");
 	return (0);
 }

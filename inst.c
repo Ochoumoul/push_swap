@@ -1,16 +1,5 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <limits.h>
-#include "utils.h"
-
-#define STACK_EMPTY INT_MIN
-
-typedef struct node {
-    int value;
-    struct node *next;
-} t_node;
-
-typedef t_node *stack;
+#include "push_swap.h"
 
 void    ft_print_inst(char *inst,char s)
 {

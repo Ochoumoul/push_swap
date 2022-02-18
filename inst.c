@@ -1,13 +1,6 @@
 #include <stdio.h>
 #include "push_swap.h"
 
-void    ft_print_inst(char *inst,char s)
-{
-    ft_putstr(inst);
-    ft_putchar(s);
-    ft_putchar('\n');
-}
-
 int    push_el(stack *stack, int value)
 {
     t_node *node;
@@ -35,12 +28,34 @@ int     pop_el(stack *stack)
     return (result);
 }
 
+void    clear_stack(stack *stack)
+{
+    int result;
+
+    result = 0;
+    while (result != STACK_EMPTY)
+        result = pop_el(stack);
+}
+
+int     find_el(stack *stack, int value)
+{
+    t_node *tmp;
+
+    tmp = *stack;
+    if (!tmp)
+        return (0);
+    while (tmp != NULL)
+    {
+        if (tmp->value == value)
+            return (1);
+        tmp = tmp->next;
+    }
+    return (0);
+}
+
 int   push_stack(stack *stackA, stack *stackB)
 {
-    int value;
-
-    value = pop_el(stackA);
-    return (push_el(stackB, value));
+    return (push_el(stackB, pop_el(stackA)));
 }
 
 int    rotate_el(stack *stack)
@@ -108,22 +123,29 @@ void    reverse_rotate_both(stack *stackA, stack *stackB)
     reverse_rotate_el(stackB);
 }
 
-int main(void)
+void    stack_error(stack *stack)
 {
-    stack a, b;
-    int result;
-
-    a = NULL;
-    b = NULL;
-
-    push_el(&a, 3);
-    push_el(&a, 9);
-    push_el(&a, 7);
-    push_el(&a, 6);
-    reverse_rotate_el(&a);
-
-    printf("===========Stack A=========\n");
-    while ((result = pop_el(&a)) != STACK_EMPTY)
-        printf("%d\n", result);
-    return (0);
+    printf("Stack Error:\n");
+    clear_stack(stack);
+    exit(0);
 }
+
+// int main(void)
+// {
+//     stack a, b;
+//     int result;
+
+//     a = NULL;
+//     b = NULL;
+
+//     push_el(&a, 3);
+//     push_el(&a, 9);
+//     push_el(&a, 7);
+//     push_el(&a, 6);
+//     clear_stack(&a);
+
+//     printf("===========Stack A=========\n");
+//     while ((result = pop_el(&a)) != STACK_EMPTY)
+//         printf("%d\n", result);
+//     return (0);
+// }

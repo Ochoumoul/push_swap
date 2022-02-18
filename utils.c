@@ -1,27 +1,5 @@
 #include "push_swap.h"
 
-// This function still needs further debuging because its not working correctly.
-
-int ft_find_duplicates(int *array, int size)
-{
-    int i;
-    int j;
-
-    i = 0;
-    while (i < size)
-    {
-        j = i + 1;
-        while (j < size)
-        {
-            if (array[i] == array[j])
-                return (1);
-            j++;
-        }
-        i++;
-    }
-    return (0);
-}
-
 int	ft_atoi(const char *str)
 {
 	int		i;

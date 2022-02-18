@@ -1,17 +1,27 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include "utils.h"
+#include "push_swap.h"
 
 int main(int argc, char **argv)
 {
 	int i;
+	stack a;
+	stack b;
 
-	i = 0;
+	a = NULL;
+	b = NULL;
+	i = 1;
 	if (argc > 2)
 	{
 		while (argv[i])
 		{
-			
+			if(!find_el(&a, ft_atoi(argv[i])))
+				push_el(&a, ft_atoi(argv[i]));
+			else
+				stack_error(&a);
+			i++;
 		}
 	}
 	else

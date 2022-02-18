@@ -14,18 +14,20 @@ typedef struct node {
 
 typedef t_node *stack;
 
-int	ft_atoi(const char *str);
+int     ft_atoi(const char *str);
 void    ft_putchar(char c);
 void    ft_putstr(char *str);
-int    push_el(stack *stack, int value);
+int     push_el(stack *stack, int value);
 int     pop_el(stack *stack);
-int   push_stack(stack *stackA, stack *stackB);
-int    rotate_el(stack *stack);
+int     push_stack(stack *stackA, stack *stackB);
+int     rotate_el(stack *stack);
 int     reverse_rotate_el(stack *stack);
 void    swap_el(stack *stack);
-void swap_both(stack *stackA, stack *stackB);
+void    swap_both(stack *stackA, stack *stackB);
 void    rotate_both(stack *stackA, stack *stackB);
 void    reverse_rotate_both(stack *stackA, stack *stackB);
-
+int     find_el(stack *stack, int value);
+void     clear_stack(stack *stack);
+void    stack_error(stack *stack);
 
 #endif

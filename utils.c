@@ -1,5 +1,27 @@
 #include "push_swap.h"
 
+int ft_strlen(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (0);
+}
+
+int ft_NaN(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i] >= '0' && str[i] <= '9')
+		i++;
+	return (i);
+	// If the function returned a number that is not the size of the string that means
+	// that one of the arguments does not contain a number character.
+}
+
 int	ft_atoi(const char *str)
 {
 	int		i;

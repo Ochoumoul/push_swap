@@ -4,9 +4,12 @@
 #include <unistd.h>
 #include <limits.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 typedef struct node {
     int value;
+    int index;
+    bool state;
     struct node *next;
 } t_node;
 

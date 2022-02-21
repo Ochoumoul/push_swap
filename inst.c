@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-int    push_el(stack *stack, int value)
+int    push_el(stack *stack, int value, int index)
 {
     t_node *node;
 
@@ -9,13 +9,14 @@ int    push_el(stack *stack, int value)
         return (0);
     node->value = value;
     node->next = *stack;
+    node->index = index;
     *stack = node;
     return (1);
 }
 
-int     pop_el(stack *stack)
+t_node  *pop_el(stack *stack)
 {
-    if (*stack == NULL) return STACK_EMPTY;
+    if (*stack == NULL) return NULL;
 
     t_node *tmp;
     int result;
@@ -24,16 +25,13 @@ int     pop_el(stack *stack)
     result = (*stack)->value;
     *stack = (*stack)->next;
     free(tmp);
-    return (result);
+    return (*stack);
 }
 
 void    clear_stack(stack *stack)
 {
-    int result;
-
-    result = 0;
-    while (result != STACK_EMPTY)
-        result = pop_el(stack);
+    while (stack != NULL)
+        pop_el(stack);
 }
 
 int     find_el(stack *stack, int value)
@@ -54,7 +52,10 @@ int     find_el(stack *stack, int value)
 
 int   push_stack(stack *stackA, stack *stackB)
 {
-    return (push_el(stackB, pop_el(stackA)));
+    t_node *el;
+
+    el = pop_el(stackA);
+    return (push_el(stackB,el->value, el->index));
 }
 
 int    rotate_el(stack *stack)
@@ -67,7 +68,7 @@ int    rotate_el(stack *stack)
     node = malloc(sizeof(t_node));
     if (!node)
         return (0);
-    node->value = pop_el(stack);
+    node->value = 0;
     node->next = NULL;
     while (tmp_stack->next != NULL)
         tmp_stack = tmp_stack->next;
@@ -129,22 +130,29 @@ void    stack_error(stack *stack)
     exit(0);
 }
 
-// int main(void)
-// {
-//     stack a, b;
-//     int result;
+int main(void)
+{
+    stack a, b;
+    int result;
 
-//     a = NULL;
-//     b = NULL;
+    a = NULL;
+    b = NULL;
 
-//     push_el(&a, 3);
-//     push_el(&a, 9);
-//     push_el(&a, 7);
-//     push_el(&a, 6);
-//     clear_stack(&a);
+    push_el(&a, 3, 0);
+    push_el(&a, 9, 1);
+    push_el(&a, 7, 2);
+    push_el(&a, 6, 3);
+    t_node *tmp;
 
-//     printf("===========Stack A=========\n");
-//     while ((result = pop_el(&a)) != STACK_EMPTY)
-//         printf("%d\n", result);
-//     return (0);
-// }
+    tmp = pop_el(&a);
+    printf("%d\n", tmp->value);
+    // clear_stack(&a);
+
+    printf("===========Stack A=========\n");
+    while (a != NULL)
+    {
+        printf("%d [%d]\n", a->value, a->index);
+        a = a->next;
+    }
+    return (0);
+}

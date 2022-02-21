@@ -18,10 +18,15 @@ int main(int argc, char **argv)
 		while (argv[i])
 		{
 			if(!find_el(&a, ft_atoi(argv[i])))
-				push_el(&a, ft_atoi(argv[i]));
+				push_el(&a, ft_atoi(argv[i]), i);
 			else
 				stack_error(&a);
 			i++;
+		}
+		while (a != NULL)
+		{
+			printf("%d [%d]\n", a->value, a->index);
+			a = a->next;
 		}
 	}
 	else

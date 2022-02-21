@@ -42,8 +42,6 @@ int longest_sub(int *arr, int size)
         while (j < i)
         {
             if (arr[i] > arr[j] && list[i] < list[j] + 1)
-            // We could use this condition in order to decide the status
-            // of the node that would be inserted
                 list[i] = list[j] + 1;
             j++;
         }

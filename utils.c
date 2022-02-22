@@ -10,6 +10,7 @@ int ft_strlen(char *str)
 	return (0);
 }
 
+// I should redo the following function.
 int ft_NaN(char *str)
 {
 	int i;

@@ -7,8 +7,10 @@
 int main(int argc, char **argv)
 {
 	int i;
+	int t;
 	stack a;
 	stack b;
+	t_node *tmp;
 
 	a = NULL;
 	b = NULL;
@@ -23,11 +25,8 @@ int main(int argc, char **argv)
 				stack_error(&a);
 			i++;
 		}
-		while (a != NULL)
-		{
-			printf("%d [%d]\n", a->value, a->index);
-			a = a->next;
-		}
+		top_min_element(&a);
+		print_stack(&a);
 	}
 	else
 		printf("Invalid arguments\n");

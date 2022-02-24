@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 19:15:54 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/02/22 19:30:08 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/02/24 18:30:12 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int    push_el(stack *stack, int value, int index)
         return (0);
     node->value = value;
     node->index = index;
+    node->length = 1;
+    node->pre_index = -1;
     node->next = *stack;
     node->state = 0;
     *stack = node;
@@ -127,6 +129,8 @@ int    rotate_el(stack *stack)
     tmp_el = pop_el(stack);
     node->value = tmp_el->value;
     node->index = tmp_el->index;
+    node->pre_index = -1;
+    node->length = 1;
     node->next = NULL;
     while (tmp_stack->next != NULL)
         tmp_stack = tmp_stack->next;
@@ -148,6 +152,8 @@ int     reverse_rotate_el(stack *stack)
         tmp = tmp->next;
     node->value = tmp->next->value;
     node->index = tmp->next->index;
+    node->pre_index = -1;
+    node->length = 1;
     node->next = *stack;
     tmp->next = NULL;
     *stack = node;
@@ -195,17 +201,10 @@ void    print_stack(stack *stack)
     tmp = *stack;
     while (tmp != NULL)
     {
-        printf("%d [%d]\n", tmp->value, tmp->index);
+        printf("Element:[%d] Length:[%d] Index[%d] Sub:[%d]\n", tmp->value, tmp->length, tmp->index,  tmp->pre_index);
         tmp = tmp->next;
     }   
 }
-
-// the only thing left is to decide wheather we should use ra or rra based on the index.
-
-// int get_index()
-// {
-    
-// }
 
 // half = ROUND(number of elements / 2)
 // if (index > half)
@@ -226,6 +225,60 @@ void    top_min_element(stack *stackA)
             rotate_el(stackA);
         else
             reverse_rotate_el(stackA);
+    }
+}
+
+int max(int value1, int value2)
+{
+    if (value1 > value2)
+        return (value1);
+    else
+        return (value2);
+}
+
+t_node	*max_length(stack *stack)
+{
+	t_node *tmp_node;
+	t_node *max_length;
+
+    max_length = (t_node *)malloc(sizeof(t_node));
+    if (!max_length)
+        return (NULL);
+	tmp_node = *stack;
+    max_length->length = tmp_node->length;
+	while (tmp_node != NULL)
+	{
+		if (max_length->length < tmp_node->length)
+        {
+            max_length->length = tmp_node->length;
+			max_length->value = tmp_node->value;
+            max_length->index = tmp_node->index;
+            max_length->pre_index = tmp_node->pre_index;
+        }
+		tmp_node = tmp_node->next;
+	}
+	return (max_length);
+}
+
+void    sort_element(stack *stack)
+{
+    t_node *tmp_i;
+    t_node *tmp_j;
+
+    tmp_i = (*stack)->next;
+    while (tmp_i != NULL)
+    {
+        tmp_j = *stack;
+        while (tmp_j != NULL)
+        {
+            if (tmp_i->value > tmp_j->value)
+            {
+                tmp_i->length = max(tmp_i->length, tmp_j->length + 1);
+                tmp_i->pre_index = tmp_j->index;
+            }
+            tmp_j = tmp_j->next;
+        }
+        tmp_i = tmp_i->next;
     }
 }
 

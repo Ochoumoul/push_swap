@@ -26,6 +26,7 @@ int main(int argc, char **argv)
 			i++;
 		}
 		top_min_element(&a);
+		sort_element(&a);
 		print_stack(&a);
 	}
 	else

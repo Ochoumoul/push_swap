@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inst.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sn4r7 <sn4r7@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 19:15:54 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/02/24 18:30:12 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/02/26 14:01:14 by sn4r7            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int    push_el(stack *stack, int value, int index)
     node->value = value;
     node->index = index;
     node->length = 1;
-    node->pre_index = -1;
+    node->sub_index = -1;
     node->next = *stack;
-    node->state = 0;
+    node->flag = 0;
     *stack = node;
     return (1);
 }
@@ -129,7 +129,7 @@ int    rotate_el(stack *stack)
     tmp_el = pop_el(stack);
     node->value = tmp_el->value;
     node->index = tmp_el->index;
-    node->pre_index = -1;
+    node->sub_index = -1;
     node->length = 1;
     node->next = NULL;
     while (tmp_stack->next != NULL)
@@ -152,7 +152,7 @@ int     reverse_rotate_el(stack *stack)
         tmp = tmp->next;
     node->value = tmp->next->value;
     node->index = tmp->next->index;
-    node->pre_index = -1;
+    node->sub_index = -1;
     node->length = 1;
     node->next = *stack;
     tmp->next = NULL;
@@ -199,18 +199,13 @@ void    print_stack(stack *stack)
     t_node *tmp;
 
     tmp = *stack;
+    printf("--------------------------------------------\n");
     while (tmp != NULL)
     {
-        printf("Element:[%d] Length:[%d] Index[%d] Sub:[%d]\n", tmp->value, tmp->length, tmp->index,  tmp->pre_index);
+        printf("Element:[%d] Length:[%d] Index[%d] Sub:[%d] flag[%d]\n", tmp->value, tmp->length, tmp->index,  tmp->sub_index, tmp->flag);
         tmp = tmp->next;
     }   
 }
-
-// half = ROUND(number of elements / 2)
-// if (index > half)
-//      ra
-// else
-//      rra
 
 void    top_min_element(stack *stackA)
 {
@@ -228,39 +223,27 @@ void    top_min_element(stack *stackA)
     }
 }
 
-int max(int value1, int value2)
-{
-    if (value1 > value2)
-        return (value1);
-    else
-        return (value2);
-}
-
 t_node	*max_length(stack *stack)
 {
-	t_node *tmp_node;
-	t_node *max_length;
+    int     max;
+    t_node *tmp_node;
+    t_node *tmp;
 
-    max_length = (t_node *)malloc(sizeof(t_node));
-    if (!max_length)
-        return (NULL);
 	tmp_node = *stack;
-    max_length->length = tmp_node->length;
+    max = tmp_node->length;
 	while (tmp_node != NULL)
 	{
-		if (max_length->length < tmp_node->length)
+		if (max < tmp_node->length)
         {
-            max_length->length = tmp_node->length;
-			max_length->value = tmp_node->value;
-            max_length->index = tmp_node->index;
-            max_length->pre_index = tmp_node->pre_index;
+            tmp = tmp_node;
+            max = tmp_node->length;
         }
 		tmp_node = tmp_node->next;
 	}
-	return (max_length);
+	return (tmp);
 }
 
-void    sort_element(stack *stack)
+void    find_list(stack *stack)
 {
     t_node *tmp_i;
     t_node *tmp_j;
@@ -274,12 +257,69 @@ void    sort_element(stack *stack)
             if (tmp_i->value > tmp_j->value)
             {
                 tmp_i->length = max(tmp_i->length, tmp_j->length + 1);
-                tmp_i->pre_index = tmp_j->index;
+                tmp_i->sub_index = tmp_j->index;
             }
             tmp_j = tmp_j->next;
         }
         tmp_i = tmp_i->next;
     }
+}
+
+t_node *find_index(stack *stack, int index)
+{
+    t_node *tmp;
+
+    tmp = *stack;
+    while (tmp != NULL)
+    {
+        if (tmp->index == index)
+            return (tmp);
+        tmp = tmp->next;
+    }
+    return (NULL);
+}
+
+int    flag_elements(stack *stack)
+{
+    t_node *tmp_el;
+    int i;
+
+    i = 0;
+    tmp_el = max_length(stack);
+    while (tmp_el->sub_index != -1)
+    {
+        tmp_el->flag = 1;
+        tmp_el = find_index(stack, tmp_el->sub_index);
+        i++;
+    }
+    tmp_el->flag = 1;
+    return (i + 1);
+}
+
+void    sort_stack(stack *stackA, stack *stackB)
+{
+    int els;
+    t_node *tmp;
+    
+    top_min_element(stackA);
+	find_list(stackA);
+    flag_elements(stackA);
+    els = stack_size(stackA);
+    print_stack(stackA);
+    while (els > 0)
+    {
+        if((*stackA)->flag == 1)
+        {
+            rotate_el(stackA);
+        }
+        else 
+        {
+            push_stack(stackA, stackB);
+        }
+        els -= 1;
+    }
+    print_stack(stackA);
+    print_stack(stackB);
 }
 
 // void    first_phase(stack *stackA, stack *stackB)

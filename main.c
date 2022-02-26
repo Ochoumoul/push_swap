@@ -25,9 +25,7 @@ int main(int argc, char **argv)
 				stack_error(&a);
 			i++;
 		}
-		top_min_element(&a);
-		sort_element(&a);
-		print_stack(&a);
+		sort_stack(&a, &b);
 	}
 	else
 		printf("Invalid arguments\n");

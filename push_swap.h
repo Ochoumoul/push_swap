@@ -10,9 +10,9 @@
 typedef struct node {
     int value;
     int index;
-    int pre_index;
+    int sub_index;
     int length;
-    int state;
+    int flag;
     struct node *next;
 } t_node;
 
@@ -28,9 +28,11 @@ t_node  *pop_el(stack *stack);
 t_node	*min_number(stack *stack);
 t_node	*max_length(stack *stack);
 void    top_min_element(stack *stackA);
-void    sort_element(stack *stack);
+void    find_list(stack *stack);
+void    sort_stack(stack *stackA, stack *stackB);
 int     push_stack(stack *stackA, stack *stackB);
 int     rotate_el(stack *stack);
+int     max(int value1, int value2);
 int     reverse_rotate_el(stack *stack);
 void    swap_el(stack *stack);
 void    swap_both(stack *stackA, stack *stackB);

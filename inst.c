@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inst.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sn4r7 <sn4r7@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 19:15:54 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/02/27 13:07:53 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/02/27 17:52:00 by sn4r7            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -243,7 +243,7 @@ t_node	*max_length(stack *stack)
 	return (tmp);
 }
 
-void    re_index(stack *stack)
+void    index_stack(stack *stack)
 {
     int i;
     t_node *tmp;
@@ -266,12 +266,13 @@ void    find_list(stack *stack)
     while (tmp_i != NULL)
     {
         tmp_j = *stack;
-        while (tmp_j != NULL)
+        while (tmp_j != tmp_i)
         {
             if (tmp_i->value > tmp_j->value)
             {
                 tmp_i->length = max(tmp_i->length, tmp_j->length + 1);
-                tmp_i->sub_index = tmp_j->index;
+                if (tmp_i->length <= tmp_j->length + 1)
+                    tmp_i->sub_index = tmp_j->index;
             }
             tmp_j = tmp_j->next;
         }
@@ -312,29 +313,24 @@ int    flag_elements(stack *stack)
 
 void    sort_stack(stack *stackA, stack *stackB)
 {
-    int els;
+    int size;
     t_node *tmp;
     
-    re_index(stackA);
+    index_stack(stackA);
     top_min_element(stackA);
 	find_list(stackA);
-    // flag_elements(stackA);
-    // els = stack_size(stackA);
-    // print_stack(stackA);
-    // while (els > 0)
-    // {
-    //     if((*stackA)->flag == 1)
-    //     {
-    //         rotate_el(stackA);
-    //     }
-    //     else 
-    //     {
-    //         push_stack(stackA, stackB);
-    //     }
-    //     els -= 1;
-    // }
+    flag_elements(stackA);
+    size = stack_size(stackA);
+    while (size > 0)
+    {
+        if((*stackA)->flag == 1)
+            rotate_el(stackA);
+        else 
+            push_stack(stackA, stackB);
+        size -= 1;
+    }
     print_stack(stackA);
-    // print_stack(stackB);
+    print_stack(stackB);
 }
 
 // void    first_phase(stack *stackA, stack *stackB)

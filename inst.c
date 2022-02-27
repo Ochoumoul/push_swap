@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   inst.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sn4r7 <sn4r7@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 19:15:54 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/02/26 14:01:14 by sn4r7            ###   ########.fr       */
+/*   Updated: 2022/02/27 13:07:53 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int    push_el(stack *stack, int value, int index)
+int    push_el(stack *stack, int value)
 {
     t_node *node;
 
@@ -20,7 +20,7 @@ int    push_el(stack *stack, int value, int index)
     if (!node)
         return (0);
     node->value = value;
-    node->index = index;
+    node->index = 1;
     node->length = 1;
     node->sub_index = -1;
     node->next = *stack;
@@ -110,7 +110,7 @@ int   push_stack(stack *stackA, stack *stackB)
     t_node *node;
 
     if((node = pop_el(stackA)))
-        return (push_el(stackB, node->value, node->index));
+        return (push_el(stackB, node->value));
     return (0);
 }
 
@@ -243,6 +243,20 @@ t_node	*max_length(stack *stack)
 	return (tmp);
 }
 
+void    re_index(stack *stack)
+{
+    int i;
+    t_node *tmp;
+
+    tmp = *stack;
+    i = 0;
+    while (tmp != NULL)
+    {
+        tmp->index = i++;
+        tmp = tmp->next;
+    }
+}
+
 void    find_list(stack *stack)
 {
     t_node *tmp_i;
@@ -301,25 +315,26 @@ void    sort_stack(stack *stackA, stack *stackB)
     int els;
     t_node *tmp;
     
+    re_index(stackA);
     top_min_element(stackA);
 	find_list(stackA);
-    flag_elements(stackA);
-    els = stack_size(stackA);
+    // flag_elements(stackA);
+    // els = stack_size(stackA);
+    // print_stack(stackA);
+    // while (els > 0)
+    // {
+    //     if((*stackA)->flag == 1)
+    //     {
+    //         rotate_el(stackA);
+    //     }
+    //     else 
+    //     {
+    //         push_stack(stackA, stackB);
+    //     }
+    //     els -= 1;
+    // }
     print_stack(stackA);
-    while (els > 0)
-    {
-        if((*stackA)->flag == 1)
-        {
-            rotate_el(stackA);
-        }
-        else 
-        {
-            push_stack(stackA, stackB);
-        }
-        els -= 1;
-    }
-    print_stack(stackA);
-    print_stack(stackB);
+    // print_stack(stackB);
 }
 
 // void    first_phase(stack *stackA, stack *stackB)

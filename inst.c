@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inst.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sn4r7 <sn4r7@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 19:15:54 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/02/27 17:52:00 by sn4r7            ###   ########.fr       */
+/*   Updated: 2022/03/01 19:45:51 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -367,3 +367,24 @@ void    sort_stack(stack *stackA, stack *stackB)
 //         printf("%d [%d]\n", el2->value, el2->index);
 //     return (0);
 // }
+
+
+
+/// Try to select the value that will be conveinent to the element am going to push to stack A
+/// and try doing that by (NUMBERB - NUMBERA) = VAL that value should be the lowest possible value
+/// in comparasion to all elements in the list.
+/// And pair every element to the right one. Try to push that element in stack A and see how many
+/// Instructions that is going to take and see how many instruction is going to take push the element
+/// In stack B to the top compare them and push the best elements
+
+/// !IDEA:
+/// To find the element pair we need to find the smallest number
+
+/// !OPTIMAZATION:
+/// DO not iterate in the hole list when trying to push the elements to stack A because
+/// that is going to take more rotation instruction.
+
+/// !IDEA:
+/// Another idea we split the stack into half and we check weather the element belongs to the first half
+/// Or the second half if the elements belongs to the first half check how far it is from the first element
+/// in the stack. and if it belongs to the second half check how far is it from the last elements.

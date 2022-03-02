@@ -31,6 +31,7 @@ void    top_min_element(stack *stackA);
 void    find_list(stack *stack);
 void    sort_stack(stack *stackA, stack *stackB);
 int     push_stack(stack *stackA, stack *stackB);
+void    pair_elements(stack *stackA, stack *stackB);
 int     rotate_el(stack *stack);
 int     max(int value1, int value2);
 int     reverse_rotate_el(stack *stack);
@@ -39,7 +40,7 @@ void    swap_both(stack *stackA, stack *stackB);
 void    rotate_both(stack *stackA, stack *stackB);
 void    reverse_rotate_both(stack *stackA, stack *stackB);
 int     find_el(stack *stack, int value);
-void     clear_stack(stack *stack);
+void    clear_stack(stack *stack);
 void    stack_error(stack *stack);
 void    print_stack(stack *stack);
 

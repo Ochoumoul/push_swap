@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 19:15:54 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/03/01 19:45:51 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/03/02 19:59:26 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int    push_el(stack *stack, int value)
 {
+    printf("pa\n");
     t_node *node;
 
     node = malloc(sizeof(t_node));
@@ -202,7 +203,7 @@ void    print_stack(stack *stack)
     printf("--------------------------------------------\n");
     while (tmp != NULL)
     {
-        printf("Element:[%d] Length:[%d] Index[%d] Sub:[%d] flag[%d]\n", tmp->value, tmp->length, tmp->index,  tmp->sub_index, tmp->flag);
+        printf("Element:[%d] Index[%d] Pair[%d]\n", tmp->value,tmp->index, tmp->sub_index);
         tmp = tmp->next;
     }   
 }
@@ -313,7 +314,7 @@ int    flag_elements(stack *stack)
 
 void    sort_stack(stack *stackA, stack *stackB)
 {
-    int size;
+    int     size;
     t_node *tmp;
     
     index_stack(stackA);
@@ -323,14 +324,35 @@ void    sort_stack(stack *stackA, stack *stackB)
     size = stack_size(stackA);
     while (size > 0)
     {
-        if((*stackA)->flag == 1)
+        if ((*stackA)->flag == 1)
             rotate_el(stackA);
         else 
             push_stack(stackA, stackB);
         size -= 1;
     }
-    print_stack(stackA);
-    print_stack(stackB);
+    index_stack(stackA);
+    index_stack(stackB);
+}
+
+void    pair_elements(stack *stackA, stack *stackB)
+{
+    t_node *tmp_i;
+    t_node *tmp_j;
+    
+    tmp_i = *stackB;
+    while (tmp_i != NULL)
+    {
+        tmp_j = *stackA;
+        while (tmp_j != NULL && tmp_j->next != NULL)
+        {
+            if (tmp_i->value > tmp_j->value && tmp_i->value < tmp_j->next->value)
+                tmp_i->sub_index = tmp_j->index;
+            tmp_j = tmp_j->next;
+        }
+        if (tmp_i->sub_index == -1)
+            tmp_i->sub_index = tmp_j->index;
+        tmp_i = tmp_i->next;
+    }
 }
 
 // void    first_phase(stack *stackA, stack *stackB)
@@ -378,7 +400,7 @@ void    sort_stack(stack *stackA, stack *stackB)
 /// In stack B to the top compare them and push the best elements
 
 /// !IDEA:
-/// To find the element pair we need to find the smallest number
+/// To find pair we will just have to find the element that can that element be in between.
 
 /// !OPTIMAZATION:
 /// DO not iterate in the hole list when trying to push the elements to stack A because
@@ -388,3 +410,6 @@ void    sort_stack(stack *stackA, stack *stackB)
 /// Another idea we split the stack into half and we check weather the element belongs to the first half
 /// Or the second half if the elements belongs to the first half check how far it is from the first element
 /// in the stack. and if it belongs to the second half check how far is it from the last elements.
+
+
+/// I need to figure out how many step an element has to take in order to reach the bottom.

@@ -26,17 +26,23 @@ int main(int argc, char **argv)
 			i++;
 		}
 		sort_stack(&a, &b);
-		// reverse_rotate_el(&a);
 		pair_elements(&a, &b);
-		// rotate_el(&a);
-		// rotate_el(&a);
-		// rotate_el(&a);
-		// push_stack(&b, &a);
-		// reverse_rotate_el(&a);
-		// push_stack(&b, &a);
-		// top_min_element(&a);
 		print_stack(&a);
 		print_stack(&b);
+		// find_best_element(&a, &b);
+		// tmp = best_element(&b);
+		// rotate_el(&a);
+		// rotate_el(&a);
+		// rotate_el(&a);
+		// push_stack(&b, &a);
+		// pair_elements(&a, &b);
+		// find_best_element(&a, &b);
+		// tmp = best_element(&b);
+		// printf("The best: %d [%d]\n", tmp->value, tmp->index);
+		// reverse_rotate_el(&b);
+		// push_stack(&b, &a);
+		// print_stack(&a);
+		// print_stack(&b);
 	}
 	else
 		printf("Invalid arguments\n");

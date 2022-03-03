@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 19:15:54 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/03/02 19:59:26 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/03/03 18:49:14 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int    push_el(stack *stack, int value)
 {
-    printf("pa\n");
     t_node *node;
 
     node = malloc(sizeof(t_node));
@@ -108,6 +107,7 @@ t_node	*min_number(stack *stack)
 
 int   push_stack(stack *stackA, stack *stackB)
 {
+    printf("pa\n");
     t_node *node;
 
     if((node = pop_el(stackA)))
@@ -130,7 +130,7 @@ int    rotate_el(stack *stack)
     tmp_el = pop_el(stack);
     node->value = tmp_el->value;
     node->index = tmp_el->index;
-    node->sub_index = -1;
+    node->sub_index = tmp_el->sub_index;
     node->length = 1;
     node->next = NULL;
     while (tmp_stack->next != NULL)
@@ -153,7 +153,7 @@ int     reverse_rotate_el(stack *stack)
         tmp = tmp->next;
     node->value = tmp->next->value;
     node->index = tmp->next->index;
-    node->sub_index = -1;
+    node->sub_index = tmp->sub_index;
     node->length = 1;
     node->next = *stack;
     tmp->next = NULL;
@@ -203,7 +203,7 @@ void    print_stack(stack *stack)
     printf("--------------------------------------------\n");
     while (tmp != NULL)
     {
-        printf("Element:[%d] Index[%d] Pair[%d]\n", tmp->value,tmp->index, tmp->sub_index);
+        printf("Element:[%d] Index[%d] SubIndex[%d] Flag: [%d]\n", tmp->value, tmp->index, tmp->sub_index, tmp->flag);
         tmp = tmp->next;
     }   
 }
@@ -218,9 +218,9 @@ void    top_min_element(stack *stackA)
     while ((*stackA)->value != min->value)
     {
         if (min->index > list_half)
-            rotate_el(stackA);
-        else
             reverse_rotate_el(stackA);
+        else
+            rotate_el(stackA);
     }
 }
 
@@ -238,6 +238,27 @@ t_node	*max_length(stack *stack)
         {
             tmp = tmp_node;
             max = tmp_node->length;
+        }
+		tmp_node = tmp_node->next;
+	}
+	return (tmp);
+}
+
+t_node	*best_element(stack *stack)
+{
+    int     min;
+    t_node *tmp_node;
+    t_node *tmp;
+
+	tmp_node = *stack;
+    min = tmp_node->length;
+    tmp = tmp_node;
+	while (tmp_node != NULL)
+	{
+		if (min > tmp_node->length)
+        {
+            tmp = tmp_node;
+            min = tmp_node->length;
         }
 		tmp_node = tmp_node->next;
 	}
@@ -318,7 +339,7 @@ void    sort_stack(stack *stackA, stack *stackB)
     t_node *tmp;
     
     index_stack(stackA);
-    top_min_element(stackA);
+    // top_min_element(stackA);
 	find_list(stackA);
     flag_elements(stackA);
     size = stack_size(stackA);
@@ -346,12 +367,56 @@ void    pair_elements(stack *stackA, stack *stackB)
         while (tmp_j != NULL && tmp_j->next != NULL)
         {
             if (tmp_i->value > tmp_j->value && tmp_i->value < tmp_j->next->value)
-                tmp_i->sub_index = tmp_j->index;
+                tmp_i->sub_index = tmp_j->next->index;
             tmp_j = tmp_j->next;
         }
-        if (tmp_i->sub_index == -1)
-            tmp_i->sub_index = tmp_j->index;
+        if (tmp_i->value < (*stackA)->value)
+            tmp_i->sub_index = (*stackA)->index;
         tmp_i = tmp_i->next;
+    }
+}
+
+/// !NEED: i'm going to need to find some sort of abrivation of this names. i mean the function names.
+int     calculate_instruction_to_top(t_node *node, int size)
+{
+    int middle;
+    int inst;
+
+    middle = size / 2;
+    if (node->index < middle)
+        inst = node->index + 1;
+    else
+        inst = (size - node->index) + 1;
+    return (inst);
+}
+
+int     calculate_instruction_to_bottom(t_node *node, int size)
+{
+    int middle;
+    int inst;
+
+    middle = size / 2;
+    if (node->index < middle)
+        inst = node->index + 1;
+    else
+        inst = (size - node->index) - 1;
+    return (inst);
+}
+
+
+void    find_best_element(stack *stackA, stack *stackB)
+{
+    // Now the object is to print how many instruction it will take to that element to the top.
+    t_node *tmp_a;
+    t_node *tmp_b;
+
+    tmp_b = *stackB;
+    while (tmp_b != NULL)
+    {
+        // printf("Element B: %d [%d]\n", tmp_b->value, calculate_instruction_to_top(tmp_b, stack_size(stackB)));
+        // printf("Element A: %d [%d]\n", tmp_a->value, calculate_instruction_to_bottom(tmp_a, stack_size(stackA)));
+        tmp_b->length = calculate_instruction_to_top(tmp_b, stack_size(stackB)) + calculate_instruction_to_bottom(find_index(stackA, tmp_b->sub_index), stack_size(stackA));
+        tmp_b = tmp_b->next;
     }
 }
 
@@ -412,4 +477,5 @@ void    pair_elements(stack *stackA, stack *stackB)
 /// in the stack. and if it belongs to the second half check how far is it from the last elements.
 
 
-/// I need to figure out how many step an element has to take in order to reach the bottom.
+/// I need to figure out depending on the index how many instruction it will take to make the element i want in the top
+/// or in the bottom

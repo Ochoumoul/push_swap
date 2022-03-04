@@ -30,7 +30,7 @@ t_node	*max_length(stack *stack);
 t_node	*best_element(stack *stack);
 void    top_min_element(stack *stackA);
 void    find_list(stack *stack);
-void    find_best_element(stack *stackA, stack *stackB);
+void    search_best_element(stack *stackA, stack *stackB);
 void    sort_stack(stack *stackA, stack *stackB);
 int     push_stack(stack *stackA, stack *stackB);
 void    pair_elements(stack *stackA, stack *stackB);

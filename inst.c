@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inst.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sn4r7 <sn4r7@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 19:15:54 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/03/04 12:42:59 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/03/04 23:05:55 by sn4r7            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -375,49 +375,50 @@ void    pair_elements(stack *stackA, stack *stackB)
     }
 }
 
-/// !NEED: i'm going to need to find some sort of abrivation of this names. i mean the function names.
-int     calculate_instruction_to_top(t_node *node, int size)
+// !NEED: i'm going to need to find some sort of abrivation of this names. i mean the function names.
+int calculate_instruction(t_node *node, int size, int *desicion)
 {
     int middle;
-    int inst;
+    int insts;
 
     middle = size / 2;
-    if (node->index < middle)
-        inst = node->index + 1;
-    else
-        inst = (size - node->index) + 1;
-    return (inst);
+    if (node->index == middle)
+    {
+        insts = size - middle;
+        *desicion = 3; // That means that the stack can go both ways.
+    }
+    else if (node->index  < middle)
+    {
+        insts = node->index;
+        *desicion = 1; // Rotation
+    }
+    else if (node->index > middle)
+    {
+        insts = size - node->index;        
+        *desicion = 2; // Reverse rotation   
+    }
 }
 
-int     calculate_instruction_to_bottom(t_node *node, int size)
-{
-    int middle;
-    int inst;
-
-    middle = size / 2;
-    if (node->index < middle)
-        inst = node->index + 1;
-    else
-        inst = (size - node->index) - 1;
-    return (inst);
-}
-
-
-void    find_best_element(stack *stackA, stack *stackB)
+void    search_best_element(stack *stackA, stack *stackB)
 {
     // Now the object is to print how many instruction it will take to that element to the top.
-    t_node *tmp_a;
     t_node *tmp_b;
+    t_node *tmp_a;
+    int     sa_insts;
+    int     sb_insts;
 
     tmp_b = *stackB;
     while (tmp_b != NULL)
     {
-        // printf("Element B: %d [%d]\n", tmp_b->value, calculate_instruction_to_top(tmp_b, stack_size(stackB)));
-        // printf("Element A: %d [%d]\n", tmp_a->value, calculate_instruction_to_bottom(tmp_a, stack_size(stackA)));
-        tmp_b->length = calculate_instruction_to_top(tmp_b, stack_size(stackB)) + calculate_instruction_to_bottom(find_index(stackA, tmp_b->sub_index), stack_size(stackA));
+        sb_insts = calculate_instruction(tmp_b, stack_size(stackB), &tmp_b->flag);
+        tmp_a = find_index(stackA, tmp_b->sub_index);
+        sa_insts = calculate_instruction(find_index(stackA, tmp_a->sub_index), stack_size(stackA), &tmp_a->flag);
+        tmp_b->length = 
         tmp_b = tmp_b->next;
     }
 }
+
+// !IDEA: what am thinking about is to add the desicsion to the node when am the doing the sort i can use the double and rotation and reverse 
 
 // void    first_phase(stack *stackA, stack *stackB)
 // {

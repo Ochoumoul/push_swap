@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 19:15:54 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/03/03 18:49:14 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/03/04 12:42:59 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,7 +203,7 @@ void    print_stack(stack *stack)
     printf("--------------------------------------------\n");
     while (tmp != NULL)
     {
-        printf("Element:[%d] Index[%d] SubIndex[%d] Flag: [%d]\n", tmp->value, tmp->index, tmp->sub_index, tmp->flag);
+        printf("Element:[%d] Index[%d] SubIndex[%d] Inst: [%d]\n", tmp->value, tmp->index, tmp->sub_index, tmp->length);
         tmp = tmp->next;
     }   
 }
@@ -339,7 +339,6 @@ void    sort_stack(stack *stackA, stack *stackB)
     t_node *tmp;
     
     index_stack(stackA);
-    // top_min_element(stackA);
 	find_list(stackA);
     flag_elements(stackA);
     size = stack_size(stackA);
@@ -359,7 +358,7 @@ void    pair_elements(stack *stackA, stack *stackB)
 {
     t_node *tmp_i;
     t_node *tmp_j;
-    
+
     tmp_i = *stackB;
     while (tmp_i != NULL)
     {

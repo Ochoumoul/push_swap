@@ -27,9 +27,9 @@ int main(int argc, char **argv)
 		}
 		sort_stack(&a, &b);
 		pair_elements(&a, &b);
+		// find_best_element(&a, &b);
 		print_stack(&a);
 		print_stack(&b);
-		// find_best_element(&a, &b);
 		// tmp = best_element(&b);
 		// rotate_el(&a);
 		// rotate_el(&a);

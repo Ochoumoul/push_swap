@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 19:15:54 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/03/05 14:13:49 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/03/05 20:44:06 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,12 +188,14 @@ void swap_both(stack *stackA, stack *stackB)
 
 void    rotate_both(stack *stackA, stack *stackB)
 {
+    printf("rr\n");
     rotate_el(stackA);
     rotate_el(stackB);
 }
 
 void    reverse_rotate_both(stack *stackA, stack *stackB)
 {
+    printf("rrr\n");
     reverse_rotate_el(stackA);
     reverse_rotate_el(stackB);
 }
@@ -397,14 +399,30 @@ int calculate_instruction(t_node *node, int size, int *desicion)
     if (node->index <= middle)
     {
         insts = node->index;
-        *desicion = 1; // Rotation
+        *desicion = 1; // Reverse Rotation
     }
     else if (node->index > middle)
     {
         insts = size - node->index;        
-        *desicion = 2; // Reverse rotation
+        *desicion = 2; // Rotation
     }
     return (insts);
+}
+
+void    flag_best_element(stack *stackA, stack *stackB)
+{
+    t_node *tmp;
+    int inst;
+
+    tmp = *stackB;
+    while (tmp != NULL)
+    {
+        if (tmp->flag == find_index(stackA ,tmp->sub_index)->flag)
+            tmp->length = max(tmp->length, find_index(stackA, tmp->sub_index)->length);
+        else
+            tmp->length = tmp->length + find_index(stackA, tmp->sub_index)->length;
+        tmp = tmp->next;
+    }
 }
 
 void    search_best_element(stack *stackA, stack *stackB)
@@ -424,6 +442,50 @@ void    search_best_element(stack *stackA, stack *stackB)
     {
         tmp_a->length = calculate_instruction(tmp_a, stack_size(stackA), &tmp_a->flag);
         tmp_a = tmp_a->next;
+    }
+}
+
+void    top_pair_elements(stack *stackA, stack *stackB)
+{
+    t_node *track;
+    t_node *tmp_b;
+    t_node *tmp_a;
+
+    track = *stackB;
+    while (track != NULL)
+    {
+        print_stack(stackA);
+        print_stack(stackB);
+        tmp_b = best_element(stackB);
+        tmp_a = find_index(stackA, tmp_b->sub_index);
+        if (tmp_b->flag == tmp_a->flag)
+        {
+            while (tmp_b != *stackA && tmp_a != *stackB)
+            {
+                if (tmp_b->flag == 2)
+                    rotate_both(stackA, stackB);
+                else
+                    reverse_rotate_both(stackA, stackB);
+            }  
+        }
+        while (tmp_b != *stackB)
+        {
+            if (tmp_b->flag == 2)
+                rotate_el(stackB);
+            else
+                reverse_rotate_el(stackB); 
+        }
+        while (1)
+            pause();
+        while (tmp_a != *stackA)
+        {
+            if (tmp_a->flag == 2)
+                rotate_el(stackA);
+            else
+                reverse_rotate_el(stackA);
+        }
+        push_stack(stackB, stackA);
+        track = track->next;
     }
 }
 

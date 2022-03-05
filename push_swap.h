@@ -28,6 +28,8 @@ t_node  *pop_el(stack *stack);
 t_node	*min_number(stack *stack);
 t_node	*max_length(stack *stack);
 t_node	*best_element(stack *stack);
+void    top_pair_elements(stack *stackA, stack *stackB);
+void    flag_best_element(stack *stackA, stack *stackB);
 void    top_min_element(stack *stackA);
 void    find_list(stack *stack);
 void    search_best_element(stack *stackA, stack *stackB);

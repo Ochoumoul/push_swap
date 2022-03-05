@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inst.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sn4r7 <sn4r7@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 19:15:54 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/03/04 23:05:55 by sn4r7            ###   ########.fr       */
+/*   Updated: 2022/03/05 14:13:49 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,16 @@ int   push_stack(stack *stackA, stack *stackB)
     return (0);
 }
 
+t_node *last_element(stack *stack)
+{
+    t_node *tmp;
+
+    tmp = *stack;
+    while (tmp != NULL)
+        tmp = tmp->next;
+    return (tmp);
+}
+
 int    rotate_el(stack *stack)
 {
     printf("ra\n");
@@ -203,7 +213,7 @@ void    print_stack(stack *stack)
     printf("--------------------------------------------\n");
     while (tmp != NULL)
     {
-        printf("Element:[%d] Index[%d] SubIndex[%d] Inst: [%d]\n", tmp->value, tmp->index, tmp->sub_index, tmp->length);
+        printf("Element:[%d] Index[%d] SubIndex[%d] Inst: [%d] Flag[%d]\n", tmp->value, tmp->index, tmp->sub_index, tmp->length, tmp->flag);
         tmp = tmp->next;
     }   
 }
@@ -371,6 +381,8 @@ void    pair_elements(stack *stackA, stack *stackB)
         }
         if (tmp_i->value < (*stackA)->value)
             tmp_i->sub_index = (*stackA)->index;
+        if (tmp_i->sub_index == -1)
+            tmp_i->sub_index = (*stackA)->index;
         tmp_i = tmp_i->next;
     }
 }
@@ -382,12 +394,7 @@ int calculate_instruction(t_node *node, int size, int *desicion)
     int insts;
 
     middle = size / 2;
-    if (node->index == middle)
-    {
-        insts = size - middle;
-        *desicion = 3; // That means that the stack can go both ways.
-    }
-    else if (node->index  < middle)
+    if (node->index <= middle)
     {
         insts = node->index;
         *desicion = 1; // Rotation
@@ -395,8 +402,9 @@ int calculate_instruction(t_node *node, int size, int *desicion)
     else if (node->index > middle)
     {
         insts = size - node->index;        
-        *desicion = 2; // Reverse rotation   
+        *desicion = 2; // Reverse rotation
     }
+    return (insts);
 }
 
 void    search_best_element(stack *stackA, stack *stackB)
@@ -404,17 +412,18 @@ void    search_best_element(stack *stackA, stack *stackB)
     // Now the object is to print how many instruction it will take to that element to the top.
     t_node *tmp_b;
     t_node *tmp_a;
-    int     sa_insts;
-    int     sb_insts;
 
     tmp_b = *stackB;
+    tmp_a = *stackA;
     while (tmp_b != NULL)
     {
-        sb_insts = calculate_instruction(tmp_b, stack_size(stackB), &tmp_b->flag);
-        tmp_a = find_index(stackA, tmp_b->sub_index);
-        sa_insts = calculate_instruction(find_index(stackA, tmp_a->sub_index), stack_size(stackA), &tmp_a->flag);
-        tmp_b->length = 
+        tmp_b->length = calculate_instruction(tmp_b, stack_size(stackB), &tmp_b->flag);
         tmp_b = tmp_b->next;
+    }
+    while (tmp_a != NULL)
+    {
+        tmp_a->length = calculate_instruction(tmp_a, stack_size(stackA), &tmp_a->flag);
+        tmp_a = tmp_a->next;
     }
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inst.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sn4r7 <sn4r7@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 19:15:54 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/03/05 20:44:06 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/03/06 11:10:46 by sn4r7            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -468,6 +468,8 @@ void    top_pair_elements(stack *stackA, stack *stackB)
                     reverse_rotate_both(stackA, stackB);
             }  
         }
+        while (1)
+            pause();
         while (tmp_b != *stackB)
         {
             if (tmp_b->flag == 2)
@@ -475,8 +477,6 @@ void    top_pair_elements(stack *stackA, stack *stackB)
             else
                 reverse_rotate_el(stackB); 
         }
-        while (1)
-            pause();
         while (tmp_a != *stackA)
         {
             if (tmp_a->flag == 2)

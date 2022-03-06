@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 19:15:54 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/03/06 19:32:54 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/03/06 19:47:32 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -376,15 +376,16 @@ void    pair_elements(stack *stackA, stack *stackB)
         while (tmp_j != NULL && tmp_j->next != NULL)
         {
             if (tmp_i->value > tmp_j->value && tmp_i->value < tmp_j->next->value)
+            {
                 tmp_i->sub_index = tmp_j->next->index;
+            }
             tmp_j = tmp_j->next;
         }
-        if (tmp_i->value < (*stackA)->value)
-            tmp_i->sub_index = (*stackA)->index;
-        if (tmp_i->sub_index == -1)
+        if (tmp_i->value < (*stackA)->value && tmp_j->value < tmp_i->value)
             tmp_i->sub_index = (*stackA)->index;
         tmp_i = tmp_i->next;
     }
+    /// if the 
 }
 
 // !NEED: i'm going to need to find some sort of abrivation of this names. i mean the function names.

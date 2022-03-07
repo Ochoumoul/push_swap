@@ -14,22 +14,22 @@ int main(int argc, char **argv)
 
 	a = NULL;
 	b = NULL;
-	i = 1;
+	i = argc - 1;
 	if (argc > 2)
 	{
-		while (argv[i])
+		while (i > 0)
 		{
 			if(!find_el(&a, ft_atoi(argv[i])))
 				push_el(&a, ft_atoi(argv[i]));
 			else
 				stack_error(&a);
-			i++;
+			i--;
 		}
 		sort_stack(&a, &b);
 		top_pair_elements(&a, &b);
+		// print_stack(&a);
 		// find_best_element(&a, &b);
-		print_stack(&a);
-		print_stack(&b);
+		// print_stack(&a);
 		// tmp = best_element(&b);
 		// rotate_el(&a);
 		// rotate_el(&a);

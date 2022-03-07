@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 19:15:54 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/03/06 19:47:32 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/03/07 18:23:51 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,13 +105,38 @@ t_node	*min_number(stack *stack)
 	return (min_node);
 }
 
-int   push_stack(stack *stackA, stack *stackB)
+t_node	*max_number(stack *stack)
 {
-    printf("pa\n");
+	t_node *tmp_node;
+	t_node *max_node;
+
+    max_node = (t_node *)malloc(sizeof(t_node));
+    if (!max_node)
+        return (NULL);
+	tmp_node = *stack;
+	max_node->value = tmp_node->value;
+    max_node->index = tmp_node->index;
+	while (tmp_node != NULL)
+	{
+		if (max_node->value < tmp_node->value)
+        {
+			max_node->value = tmp_node->value;
+            max_node->index = tmp_node->index;
+        }
+		tmp_node = tmp_node->next;
+	}
+	return (max_node);
+}
+
+int   push_stack(stack *stackA, stack *stackB, char *inst)
+{
     t_node *node;
 
     if((node = pop_el(stackA)))
+    {
+        ft_print_instruction(inst);
         return (push_el(stackB, node->value));
+    }
     return (0);
 }
 
@@ -125,15 +150,13 @@ t_node *last_element(stack *stack)
     return (tmp);
 }
 
-int    rotate_el(stack *stack)
+int    rotate_el(stack *stack, char *inst)
 {
-    printf("ra\n");
     t_node *node;
     t_node *tmp_stack;
     t_node *tmp_el;
 
     tmp_stack = *stack;
-
     node = malloc(sizeof(t_node));
     if (!node)
         return (0);
@@ -146,12 +169,12 @@ int    rotate_el(stack *stack)
     while (tmp_stack->next != NULL)
         tmp_stack = tmp_stack->next;
     tmp_stack->next = node;
+    ft_print_instruction(inst);
     return (1);
 }
 
-int     reverse_rotate_el(stack *stack)
+int     reverse_rotate_el(stack *stack, char *inst)
 {
-    printf("rra\n");
     t_node *node;
     t_node *tmp;
 
@@ -168,41 +191,44 @@ int     reverse_rotate_el(stack *stack)
     node->next = *stack;
     tmp->next = NULL;
     *stack = node;
+    ft_print_instruction(inst);
     return (1);
 }
 
-void    swap_el(stack *stack)
+void    swap_el(stack *stack, char *inst)
 {
     int tmp;
     
     tmp = (*stack)->value;
     (*stack)->value = (*stack)->next->value;
     (*stack)->next->value = tmp;
+    ft_print_instruction(inst);
 }
 
 void swap_both(stack *stackA, stack *stackB)
 {
-    swap_el(stackA);
-    swap_el(stackB);
+    ft_print_instruction("ss\n");
+    swap_el(stackA, "");
+    swap_el(stackB, "");
 }
 
 void    rotate_both(stack *stackA, stack *stackB)
 {
-    printf("rr\n");
-    rotate_el(stackA);
-    rotate_el(stackB);
+    ft_print_instruction("rr\n");
+    rotate_el(stackA, "");
+    rotate_el(stackB, "");
 }
 
 void    reverse_rotate_both(stack *stackA, stack *stackB)
 {
-    printf("rrr\n");
-    reverse_rotate_el(stackA);
-    reverse_rotate_el(stackB);
+    ft_print_instruction("rrr\n");
+    reverse_rotate_el(stackA, "");
+    reverse_rotate_el(stackB, "");
 }
 
 void    stack_error(stack *stack)
 {
-    printf("Stack Error:\n");
+    ft_putstr("Stack Error:\n");
     clear_stack(stack);
     exit(0);
 }
@@ -212,7 +238,6 @@ void    print_stack(stack *stack)
     t_node *tmp;
 
     tmp = *stack;
-    printf("--------------------------------------------\n");
     while (tmp != NULL)
     {
         printf("Element:[%d] Index[%d] SubIndex[%d] Inst: [%d] Flag[%d]\n", tmp->value, tmp->index, tmp->sub_index, tmp->length, tmp->flag);
@@ -223,16 +248,16 @@ void    print_stack(stack *stack)
 void    top_min_element(stack *stackA)
 {
     int     list_half;
-    t_node *min;
+    t_node  *min;
 
 	min = min_number(stackA);
     list_half = stack_size(stackA) / 2;
     while ((*stackA)->value != min->value)
     {
         if (min->index > list_half)
-            reverse_rotate_el(stackA);
+            reverse_rotate_el(stackA, "rra\n");
         else
-            rotate_el(stackA);
+            rotate_el(stackA, "ra\n");
     }
 }
 
@@ -357,38 +382,45 @@ void    sort_stack(stack *stackA, stack *stackB)
     while (size > 0)
     {
         if ((*stackA)->flag == 1)
-            rotate_el(stackA);
+            rotate_el(stackA, "ra\n");
         else 
-            push_stack(stackA, stackB);
+            push_stack(stackA, stackB, "pb\n");
         size -= 1;
     }
 }
 
-void    pair_elements(stack *stackA, stack *stackB)
+void    pair(stack *stack , t_node *node, int min, int max)
 {
-    t_node *tmp_i;
-    t_node *tmp_j;
+    t_node *tmp;
 
-    tmp_i = *stackB;
-    while (tmp_i != NULL)
+    tmp = *stack;    
+    while (tmp != NULL && tmp->next != NULL)
     {
-        tmp_j = *stackA;
-        while (tmp_j != NULL && tmp_j->next != NULL)
+        if (node->value > tmp->value && node->value < tmp->next->value)
         {
-            if (tmp_i->value > tmp_j->value && tmp_i->value < tmp_j->next->value)
-            {
-                tmp_i->sub_index = tmp_j->next->index;
-            }
-            tmp_j = tmp_j->next;
+            node->sub_index = tmp->next->index;
+            return ;
         }
-        if (tmp_i->value < (*stackA)->value && tmp_j->value < tmp_i->value)
-            tmp_i->sub_index = (*stackA)->index;
-        tmp_i = tmp_i->next;
+        tmp = tmp->next;
     }
-    /// if the 
+    if (node->value < (*stack)->value && node->value > tmp->value)
+        node->sub_index = (*stack)->index;
+    else
+        node->sub_index = min_number(stack)->index;
 }
 
-// !NEED: i'm going to need to find some sort of abrivation of this names. i mean the function names.
+void    pair_elements(stack *stackA, stack *stackB)
+{
+    t_node *tmp;
+
+    tmp = *stackB;
+    while (tmp != NULL)
+    {
+        pair(stackA, tmp, min_number(stackA)->value, max_number(stackA)->value);
+        tmp = tmp->next;
+    }
+}
+
 int calculate_instruction(t_node *node, int size, int *desicion)
 {
     int middle;
@@ -422,15 +454,10 @@ void    flag_best_element(stack *stackA, stack *stackB)
             tmp->length = tmp->length + find_index(stackA, tmp->sub_index)->length;
         tmp = tmp->next;
     }
-    printf("--------stack A------\n");
-    print_stack(stackA);
-    printf("--------stack B------\n");
-    print_stack(stackB);
 }
 
 void    search_best_element(stack *stackA, stack *stackB)
 {
-    // Now the object is to print how many instruction it will take to that element to the top.
     t_node *tmp_b;
     t_node *tmp_a;
 
@@ -448,16 +475,15 @@ void    search_best_element(stack *stackA, stack *stackB)
     }
 }
 
-
-
 void    top_pair_elements(stack *stackA, stack *stackB)
 {
     t_node *tmp_b;
     t_node *tmp_a;
     t_node *track;
+    int size;
 
     track = *stackB;
-    while (track != NULL)
+    while (size != 0)
     {
         index_stack(stackA);
         index_stack(stackB);
@@ -479,20 +505,21 @@ void    top_pair_elements(stack *stackA, stack *stackB)
         while (tmp_b->value != (*stackB)->value)
         {
             if (tmp_b->flag == 2)
-                reverse_rotate_el(stackB); 
+                reverse_rotate_el(stackB, "rrb\n"); 
             else
-                rotate_el(stackB);
+                rotate_el(stackB, "rb\n");
         }
         while (tmp_a->value != (*stackA)->value)
         {
             if (tmp_a->flag == 2)
-                reverse_rotate_el(stackA);
+                reverse_rotate_el(stackA, "rra\n");
             else
-                rotate_el(stackA);
+                rotate_el(stackA, "ra\n");
         }
-        push_stack(stackB, stackA);
-        track = track->next;
+        push_stack(stackB, stackA, "pa\n");
+        size = stack_size(stackB);
     }
+    top_min_element(stackA);
 }
 
 // !IDEA: what am thinking about is to add the desicsion to the node when am the doing the sort i can use the double and rotation and reverse 

@@ -74,3 +74,8 @@ void    ft_putstr(char *str)
         i++;
     }
 }
+
+void	ft_print_instruction(char *str)
+{
+	ft_putstr(str);
+}

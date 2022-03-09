@@ -6,13 +6,13 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 19:15:54 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/03/09 13:03:23 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/03/09 13:17:49 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int    push_el(stack *stack, int value)
+int    push_el(stack *stack, int value) // Stack implementation.
 {
     t_node *node;
 
@@ -29,7 +29,7 @@ int    push_el(stack *stack, int value)
     return (1);
 }
 
-t_node  *pop_el(stack *stack)
+t_node  *pop_el(stack *stack) // Stack implementation.
 {
     if (*stack == NULL) return NULL;
 
@@ -505,6 +505,26 @@ void    top_pair_elements(stack *stackA, stack *stackB, t_node *nodeA, t_node *n
         else
             rotate_el(stackA, "ra\n");
     }
+}
+
+int check_sorted_stack(stack *stack)
+{
+    t_node *tmp;
+
+    if (*stack)
+    {
+        tmp = *stack;
+        while (tmp->next != NULL)
+        {
+            if (tmp->value < tmp->next->value)
+                tmp = tmp->next;
+            else
+                return (0);
+        }
+        return (1);
+    }
+    else
+        return (0);
 }
 
 void    sort_all(stack *stackA, stack *stackB)

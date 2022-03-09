@@ -7,10 +7,8 @@
 int main(int argc, char **argv)
 {
 	int i;
-	int t;
 	stack a;
 	stack b;
-	t_node *tmp;
 
 	a = NULL;
 	b = NULL;
@@ -25,24 +23,12 @@ int main(int argc, char **argv)
 				stack_error(&a);
 			i--;
 		}
-		sort_stack(&a, &b);
-		sort_all(&a, &b);
+		if (!check_sorted_stack(&a))	
+		{
+			sort_stack(&a, &b);
+			sort_all(&a, &b);
+		}
 		print_stack(&a);
-		// find_best_element(&a, &b);
-		// print_stack(&a);
-		// tmp = best_element(&b);
-		// rotate_el(&a);
-		// rotate_el(&a);
-		// rotate_el(&a);
-		// push_stack(&b, &a);
-		// pair_elements(&a, &b);
-		// find_best_element(&a, &b);
-		// tmp = best_element(&b);
-		// printf("The best: %d [%d]\n", tmp->value, tmp->index);
-		// reverse_rotate_el(&b);
-		// push_stack(&b, &a);
-		// print_stack(&a);
-		// print_stack(&b);
 	}
 	else
 		printf("Invalid arguments\n");

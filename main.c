@@ -28,5 +28,6 @@ int main(int argc, char **argv)
 	}
 	else
 		printf("Invalid arguments\n");
+	// while (1);
 	return (0);
 }

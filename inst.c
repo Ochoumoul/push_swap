@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 19:15:54 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/03/09 12:58:30 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/03/09 13:03:23 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -479,7 +479,7 @@ void    smart_double_rotation(stack *stackA, stack *stackB, t_node *nodeA, t_nod
 {
     if (nodeB->flag == nodeB->flag)
         {
-            while (nodeB->value != (*stackB)->value && nodeB->value != (*stackA)->value)
+            while (nodeB->value != (*stackB)->value && nodeA->value != (*stackA)->value)
             {
                 if (nodeB->flag == 2)
                     reverse_rotate_both(stackA, stackB);
@@ -511,11 +511,8 @@ void    sort_all(stack *stackA, stack *stackB)
 {
     t_node *tmp_b;
     t_node *tmp_a;
-    t_node *track;
-    int size;
 
-    track = *stackB;
-    while (size != 0)
+    while (stack_size(stackB) != 0)
     {
         index_stack(stackA);
         index_stack(stackB);
@@ -527,7 +524,6 @@ void    sort_all(stack *stackA, stack *stackB)
         smart_double_rotation(stackA, stackB, tmp_a, tmp_b);
         top_pair_elements(stackA, stackB, tmp_a, tmp_b);
         push_stack(stackB, stackA, "pa\n");
-        size = stack_size(stackB);
     }
     top_min_element(stackA);
 }

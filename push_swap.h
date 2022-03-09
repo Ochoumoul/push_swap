@@ -20,11 +20,11 @@ typedef t_node *stack;
 
 int     ft_atoi(const char *str);
 void    ft_putchar(char c);
-void    ft_putstr(char *str);
 int     push_el(stack *stack, int value);
 void    clear_stack(stack *stack);
 int     find_el(stack *stack, int value);
 int     stack_size(stack *stack);
+int     max(int value1, int value2);
 t_node  *pop_el(stack *stack);
 t_node	*min_number(stack *stack);
 t_node	*max_length(stack *stack);

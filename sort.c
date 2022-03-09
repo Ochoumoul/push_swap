@@ -1,80 +1,77 @@
-#include <stdlib.h>
+#include "push_swap.h"
 
-int biggest(int value1, int value2)
+void    top_min_element(stack *stackA)
 {
-    if (value1 > value2)
-        return (value1);
-    else
-        return (value2);
-}
+    int     list_half;
+    t_node  *min;
 
-int max_value(int *arr, int size)
-{
-    int max;
-    int i;
-
-    i = 0;
-    max = 0;
-    while (i < size - 1)
+	min = min_number(stackA);
+    list_half = stack_size(stackA) / 2;
+    while ((*stackA)->value != min->value)
     {
-        if (arr[i] < arr[i + 1])
-            max = arr[i + 1];
-        i++;
+        if (min->index > list_half)
+            reverse_rotate_el(stackA, "rra\n");
+        else
+            rotate_el(stackA, "ra\n");
     }
-    return (max);
 }
 
-// The time complexity for the algorithm is O(n^2)
-
-int longest_sub(int *arr, int size)
+int check_sorted_stack(stack *stack)
 {
-    int list[size];
-    int i;
-    int j;
+    t_node *tmp;
 
-    list[0] = 1;
-    i = 1;
-    while(i < size)
+    if (*stack)
     {
-        j = 0;
-        list[i] = 1;
-        while (j < i)
+        tmp = *stack;
+        while (tmp->next != NULL)
         {
-            if (arr[i] > arr[j] && list[i] < list[j] + 1)
-                list[i] = list[j] + 1;
-            j++;
+            if (tmp->value < tmp->next->value)
+                tmp = tmp->next;
+            else
+                return (0);
         }
-        i++;
+        return (1);
     }
-    return max_value(list, size);
+    else
+        return (0);
 }
 
-// int longest_incresing_sub(int *arr, int size)
-// {
-//     int list[size];
-
-//     int i;
-//     int j;
-
-
-//     while (i < size)
-//     {
-//         j = i + 1;
-//         while (j < size)
-//         {
-//             if (arr[i] < arr[j])
-//                 list[i] = biggest(list[i], list[j]);
-//             j++;
-//         }
-//         i++;
-//     }
-//     return (max_value(list));
-// }
-
-int main(int argc, char **argv)
+void    sort_stack(stack *stackA, stack *stackB)
 {
-    int arr[14] = {1, 2, 4, 3, 5, 8, 9, 12, 14, 17, 6, 6, 5, 100};
-    int output = longest_sub(arr, 14);
-    printf("Final Output: %d\n", output);
-    return (0);
+    int     size;
+    t_node *tmp;
+    
+    index_stack(stackA);
+	find_list(stackA);
+    flag_elements(stackA);
+    size = stack_size(stackA);
+    while (size > 0)
+    {
+        if ((*stackA)->flag == 1)
+            rotate_el(stackA, "ra\n");
+        else 
+            push_stack(stackA, stackB, "pb\n");
+        size -= 1;
+    }
+}
+
+void    sort_all(stack *stackA, stack *stackB)
+{
+    t_node *tmp_b;
+    t_node *tmp_a;
+
+    while (stack_size(stackB) != 0)
+    {
+        index_stack(stackA);
+        index_stack(stackB);
+        pair_elements(stackA, stackB);
+        search_best_element(stackA, stackB);
+        flag_best_element(stackA, stackB);
+        tmp_b = best_element(stackB);
+        tmp_a = find_index(stackA, tmp_b->sub_index);
+        smart_double_rotation(stackA, stackB, tmp_a, tmp_b);
+        top_pair_elements(stackA, stackB, tmp_a, tmp_b);
+        push_stack(stackB, stackA, "pa\n");
+    }
+    top_min_element(stackA);
 }

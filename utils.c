@@ -1,35 +1,11 @@
 #include "push_swap.h"
 
-
 int  max(int value1, int value2)
 {
     if (value1 > value2)
         return (value1);
     else
         return (value2);
-}
-
-int ft_strlen(char *str)
-{
-	int i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (0);
-}
-
-// I should redo the following function.
-int ft_NaN(char *str)
-{
-	int i;
-
-	i = 0;
-	while (str[i] >= '0' && str[i] <= '9')
-		i++;
-	return (i);
-	// If the function returned a number that is not the size of the string that means
-	// that one of the arguments does not contain a number character.
 }
 
 int	ft_atoi(const char *str)

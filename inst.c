@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 19:15:54 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/03/07 18:23:51 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/03/09 12:58:30 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -475,7 +475,39 @@ void    search_best_element(stack *stackA, stack *stackB)
     }
 }
 
-void    top_pair_elements(stack *stackA, stack *stackB)
+void    smart_double_rotation(stack *stackA, stack *stackB, t_node *nodeA, t_node *nodeB)
+{
+    if (nodeB->flag == nodeB->flag)
+        {
+            while (nodeB->value != (*stackB)->value && nodeB->value != (*stackA)->value)
+            {
+                if (nodeB->flag == 2)
+                    reverse_rotate_both(stackA, stackB);
+                else
+                    rotate_both(stackA, stackB);
+        }
+    }
+}
+
+void    top_pair_elements(stack *stackA, stack *stackB, t_node *nodeA, t_node *nodeB)
+{
+    while (nodeB->value != (*stackB)->value)
+    {
+        if (nodeB->flag == 2)
+            reverse_rotate_el(stackB, "rrb\n"); 
+        else
+            rotate_el(stackB, "rb\n");
+    }
+    while (nodeA->value != (*stackA)->value)
+    {
+        if (nodeA->flag == 2)
+            reverse_rotate_el(stackA, "rra\n");
+        else
+            rotate_el(stackA, "ra\n");
+    }
+}
+
+void    sort_all(stack *stackA, stack *stackB)
 {
     t_node *tmp_b;
     t_node *tmp_a;
@@ -492,30 +524,8 @@ void    top_pair_elements(stack *stackA, stack *stackB)
         flag_best_element(stackA, stackB);
         tmp_b = best_element(stackB);
         tmp_a = find_index(stackA, tmp_b->sub_index);
-        if (tmp_b->flag == tmp_a->flag)
-        {
-            while (tmp_b->value != (*stackB)->value && tmp_a->value != (*stackA)->value)
-            {
-                if (tmp_b->flag == 2)
-                    reverse_rotate_both(stackA, stackB);
-                else
-                    rotate_both(stackA, stackB);
-            }
-        }
-        while (tmp_b->value != (*stackB)->value)
-        {
-            if (tmp_b->flag == 2)
-                reverse_rotate_el(stackB, "rrb\n"); 
-            else
-                rotate_el(stackB, "rb\n");
-        }
-        while (tmp_a->value != (*stackA)->value)
-        {
-            if (tmp_a->flag == 2)
-                reverse_rotate_el(stackA, "rra\n");
-            else
-                rotate_el(stackA, "ra\n");
-        }
+        smart_double_rotation(stackA, stackB, tmp_a, tmp_b);
+        top_pair_elements(stackA, stackB, tmp_a, tmp_b);
         push_stack(stackB, stackA, "pa\n");
         size = stack_size(stackB);
     }

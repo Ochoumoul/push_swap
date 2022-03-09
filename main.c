@@ -26,8 +26,8 @@ int main(int argc, char **argv)
 			i--;
 		}
 		sort_stack(&a, &b);
-		top_pair_elements(&a, &b);
-		// print_stack(&a);
+		sort_all(&a, &b);
+		print_stack(&a);
 		// find_best_element(&a, &b);
 		// print_stack(&a);
 		// tmp = best_element(&b);

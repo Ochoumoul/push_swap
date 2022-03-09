@@ -1,6 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
 #include "utils.h"
 #include "push_swap.h"
 
@@ -28,7 +25,7 @@ int main(int argc, char **argv)
 			sort_stack(&a, &b);
 			sort_all(&a, &b);
 		}
-		print_stack(&a);
+		// print_stack(&a);
 	}
 	else
 		printf("Invalid arguments\n");

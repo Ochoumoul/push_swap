@@ -63,9 +63,9 @@ void    ft_putchar(char c)
     write(1, &c, 1);
 }
 
-void    ft_putstr(char *str)
+void	print_instruction(char *str)
 {
-    int i;
+	 int i;
 
     i = 0;
     while (str[i])
@@ -73,9 +73,4 @@ void    ft_putstr(char *str)
         ft_putchar(str[i]);
         i++;
     }
-}
-
-void	ft_print_instruction(char *str)
-{
-	ft_putstr(str);
 }

@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <stdlib.h>
 
 int biggest(int value1, int value2)

@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 19:15:54 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/03/09 13:17:49 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/03/09 14:55:36 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,50 +82,70 @@ int stack_size(stack *stack)
     return (size);
 }
 
+// t_node	*min_number(stack *stack)
+// {
+// 	t_node *tmp_node;
+// 	t_node *min_node;
+
+//     min_node = (t_node *)malloc(sizeof(t_node));
+//     if (!min_node)
+//         return (NULL);
+// 	tmp_node = *stack;
+// 	min_node->value = tmp_node->value;
+//     min_node->index = tmp_node->index;
+// 	while (tmp_node != NULL)
+// 	{
+// 		if (min_node->value > tmp_node->value)
+//         {
+// 			min_node->value = tmp_node->value;
+//             min_node->index = tmp_node->index;
+//         }
+// 		tmp_node = tmp_node->next;
+// 	}
+// 	return (min_node);
+// }
+
+// t_node	*max_number(stack *stack)
+// {
+// 	t_node *tmp_node;
+// 	t_node *max_node;
+
+//     max_node = (t_node *)malloc(sizeof(t_node));
+//     if (!max_node)
+//         return (NULL);
+// 	tmp_node = *stack;
+// 	max_node->value = tmp_node->value;
+//     max_node->index = tmp_node->index;
+// 	while (tmp_node != NULL)
+// 	{
+// 		if (max_node->value < tmp_node->value)
+//         {
+// 			max_node->value = tmp_node->value;
+//             max_node->index = tmp_node->index;
+//         }
+// 		tmp_node = tmp_node->next;
+// 	}
+// 	return (max_node);
+// }
+
 t_node	*min_number(stack *stack)
 {
-	t_node *tmp_node;
-	t_node *min_node;
+    int     min;
+    t_node *tmp_node;
+    t_node *tmp;
 
-    min_node = (t_node *)malloc(sizeof(t_node));
-    if (!min_node)
-        return (NULL);
 	tmp_node = *stack;
-	min_node->value = tmp_node->value;
-    min_node->index = tmp_node->index;
+    min = tmp_node->value;
 	while (tmp_node != NULL)
 	{
-		if (min_node->value > tmp_node->value)
+		if (min >= tmp_node->value)
         {
-			min_node->value = tmp_node->value;
-            min_node->index = tmp_node->index;
+            tmp = tmp_node;
+            min = tmp_node->value;
         }
 		tmp_node = tmp_node->next;
 	}
-	return (min_node);
-}
-
-t_node	*max_number(stack *stack)
-{
-	t_node *tmp_node;
-	t_node *max_node;
-
-    max_node = (t_node *)malloc(sizeof(t_node));
-    if (!max_node)
-        return (NULL);
-	tmp_node = *stack;
-	max_node->value = tmp_node->value;
-    max_node->index = tmp_node->index;
-	while (tmp_node != NULL)
-	{
-		if (max_node->value < tmp_node->value)
-        {
-			max_node->value = tmp_node->value;
-            max_node->index = tmp_node->index;
-        }
-		tmp_node = tmp_node->next;
-	}
-	return (max_node);
+	return (tmp);
 }
 
 int   push_stack(stack *stackA, stack *stackB, char *inst)
@@ -134,20 +154,10 @@ int   push_stack(stack *stackA, stack *stackB, char *inst)
 
     if((node = pop_el(stackA)))
     {
-        ft_print_instruction(inst);
+        print_instruction(inst);
         return (push_el(stackB, node->value));
     }
     return (0);
-}
-
-t_node *last_element(stack *stack)
-{
-    t_node *tmp;
-
-    tmp = *stack;
-    while (tmp != NULL)
-        tmp = tmp->next;
-    return (tmp);
 }
 
 int    rotate_el(stack *stack, char *inst)
@@ -169,7 +179,7 @@ int    rotate_el(stack *stack, char *inst)
     while (tmp_stack->next != NULL)
         tmp_stack = tmp_stack->next;
     tmp_stack->next = node;
-    ft_print_instruction(inst);
+    print_instruction(inst);
     return (1);
 }
 
@@ -191,7 +201,7 @@ int     reverse_rotate_el(stack *stack, char *inst)
     node->next = *stack;
     tmp->next = NULL;
     *stack = node;
-    ft_print_instruction(inst);
+    print_instruction(inst);
     return (1);
 }
 
@@ -202,33 +212,33 @@ void    swap_el(stack *stack, char *inst)
     tmp = (*stack)->value;
     (*stack)->value = (*stack)->next->value;
     (*stack)->next->value = tmp;
-    ft_print_instruction(inst);
+    print_instruction(inst);
 }
 
 void swap_both(stack *stackA, stack *stackB)
 {
-    ft_print_instruction("ss\n");
+    print_instruction("ss\n");
     swap_el(stackA, "");
     swap_el(stackB, "");
 }
 
 void    rotate_both(stack *stackA, stack *stackB)
 {
-    ft_print_instruction("rr\n");
+    print_instruction("rr\n");
     rotate_el(stackA, "");
     rotate_el(stackB, "");
 }
 
 void    reverse_rotate_both(stack *stackA, stack *stackB)
 {
-    ft_print_instruction("rrr\n");
+    print_instruction("rrr\n");
     reverse_rotate_el(stackA, "");
     reverse_rotate_el(stackB, "");
 }
 
 void    stack_error(stack *stack)
 {
-    ft_putstr("Stack Error:\n");
+    write(1, "Stack Error:\n", 14);
     clear_stack(stack);
     exit(0);
 }
@@ -240,7 +250,7 @@ void    print_stack(stack *stack)
     tmp = *stack;
     while (tmp != NULL)
     {
-        printf("Element:[%d] Index[%d] SubIndex[%d] Inst: [%d] Flag[%d]\n", tmp->value, tmp->index, tmp->sub_index, tmp->length, tmp->flag);
+        printf("Element:[%d] Index[%d]\n", tmp->value, tmp->index);
         tmp = tmp->next;
     }   
 }
@@ -389,7 +399,7 @@ void    sort_stack(stack *stackA, stack *stackB)
     }
 }
 
-void    pair(stack *stack , t_node *node, int min, int max)
+void    pair(stack *stack , t_node *node)
 {
     t_node *tmp;
 
@@ -416,7 +426,7 @@ void    pair_elements(stack *stackA, stack *stackB)
     tmp = *stackB;
     while (tmp != NULL)
     {
-        pair(stackA, tmp, min_number(stackA)->value, max_number(stackA)->value);
+        pair(stackA, tmp);
         tmp = tmp->next;
     }
 }
@@ -478,13 +488,13 @@ void    search_best_element(stack *stackA, stack *stackB)
 void    smart_double_rotation(stack *stackA, stack *stackB, t_node *nodeA, t_node *nodeB)
 {
     if (nodeB->flag == nodeB->flag)
+    {
+        while (nodeB->value != (*stackB)->value && nodeA->value != (*stackA)->value)
         {
-            while (nodeB->value != (*stackB)->value && nodeA->value != (*stackA)->value)
-            {
-                if (nodeB->flag == 2)
-                    reverse_rotate_both(stackA, stackB);
-                else
-                    rotate_both(stackA, stackB);
+            if (nodeB->flag == 2)
+                reverse_rotate_both(stackA, stackB);
+            else
+                rotate_both(stackA, stackB);
         }
     }
 }

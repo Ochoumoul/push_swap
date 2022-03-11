@@ -20,4 +20,3 @@ void    reverse_rotate_both(stack *stackA, stack *stackB)
     reverse_rotate_el(stackA, "");
     reverse_rotate_el(stackB, "");
 }
-

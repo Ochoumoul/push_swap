@@ -25,6 +25,7 @@ int    rotate_el(stack *stack, char *inst)
     tmp_el = pop_el(stack);
     node->value = tmp_el->value;
     node->index = tmp_el->index;
+    node->flag = tmp_el->flag;
     node->sub_index = tmp_el->sub_index;
     node->length = 1;
     node->next = NULL;
@@ -74,7 +75,7 @@ void    print_stack(stack *stack)
     tmp = *stack;
     while (tmp != NULL)
     {
-        printf("Element:[%d] Index[%d]\n", tmp->value, tmp->index);
+        printf("Element:[%d] Index[%d] Flag[%d]\n Length[%d]\n", tmp->value, tmp->index, tmp->flag, tmp->length);
         tmp = tmp->next;
     }   
 }

@@ -5,7 +5,7 @@ int calculate_instruction(t_node *node, int size, int *desicion)
     int middle;
     int insts;
 
-    middle = size / 2;
+    middle = (size / 2);
     if (node->index <= middle)
     {
         insts = node->index;

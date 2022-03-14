@@ -36,20 +36,6 @@ int check_sorted_stack(stack *stack)
         return (0);
 }
 
-int check_flags(stack *stack)
-{
-    t_node *tmp;
-
-    tmp = *stack;
-    while (tmp != NULL)
-    {
-        if (tmp->flag == 0)
-            return (1);
-        tmp = tmp->next;
-    }
-    return (0);
-}
-
 void    sort_stack(stack *stackA, stack *stackB)
 {
     int     size;
@@ -61,8 +47,6 @@ void    sort_stack(stack *stackA, stack *stackB)
     size = stack_size(stackA);
     while (size)
     {
-        // if (!check_flags(stackA))
-        //     return ;
         if ((*stackA)->flag == 1)
             rotate_el(stackA, "ra\n");
         else 

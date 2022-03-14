@@ -86,13 +86,3 @@ char    **validate_args(int argc, char **args, int *elements)
     *elements = num;
     return (numbers);
 }
-
-int main(int argc, char **argv)
-{
-    int numelements;
-    char **numbers;
-
-    numbers = validate_args(argc, argv, &numelements);
-    printf("Number of elements: %d\n", numelements);
-    return (0);
-}

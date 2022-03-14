@@ -13,7 +13,7 @@ int calculate_instruction(t_node *node, int size, int *desicion)
     }
     else if (node->index > middle)
     {
-        insts = size - node->index;        
+        insts = size - node->index + 1;        
         *desicion = 2; // Reverse rotation
     }
     return (insts);

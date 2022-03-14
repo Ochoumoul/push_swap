@@ -73,9 +73,10 @@ void    print_stack(stack *stack)
     t_node *tmp;
 
     tmp = *stack;
+    printf("----------------------------------------\n");
     while (tmp != NULL)
     {
-        printf("Element:[%d] Index[%d] Flag[%d]\n Length[%d]\n", tmp->value, tmp->index, tmp->flag, tmp->length);
+        printf("Element:[%d] Pair:[%d] Index[%d] Length[%d] Flag[%d]\n ", tmp->value, tmp->sub_index, tmp->index, tmp->length, tmp->flag);
         tmp = tmp->next;
-    }   
+    }
 }

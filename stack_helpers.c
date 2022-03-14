@@ -51,7 +51,7 @@ t_node	*best_element(stack *stack)
     tmp = tmp_node;
 	while (tmp_node != NULL)
 	{
-		if (min > tmp_node->length)
+		if (min >= tmp_node->length)
         {
             tmp = tmp_node;
             min = tmp_node->length;

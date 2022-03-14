@@ -1,6 +1,6 @@
-#include "libft.h"
+#include "push_swap.h"
 
-static int	ft_count_words(char const *str, char sep)
+static int	ft_count_words(char *str, char sep)
 {
 	int	i;
 	int	words_count;
@@ -35,7 +35,7 @@ static char	**ft_return_value(char **words, int j)
 	return (words);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char *s, char c)
 {
 	int		i;
 	int		j;

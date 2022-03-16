@@ -2,9 +2,10 @@
 
 int calculate_instruction(t_node *node, int size, int *desicion)
 {
-    int middle;
     int insts;
+    int middle;
 
+    insts = 0;
     middle = (size / 2);
     if (node->index <= middle)
     {
@@ -13,7 +14,7 @@ int calculate_instruction(t_node *node, int size, int *desicion)
     }
     else if (node->index > middle)
     {
-        insts = size - node->index + 1;        
+        insts = size - node->index;        
         *desicion = 2; // Reverse rotation
     }
     return (insts);
@@ -22,13 +23,10 @@ int calculate_instruction(t_node *node, int size, int *desicion)
 void    flag_best_element(stack *stackA, stack *stackB)
 {
     t_node *tmp;
-    int inst;
 
     tmp = *stackB;
     while (tmp != NULL)
     {
-        // The condition bellow just means if the 2 nodes flags match we take the most instructions that it will take for that item
-        // to move to the top.
         if (tmp->flag == find_index(stackA ,tmp->sub_index)->flag)
             tmp->length = max(tmp->length, find_index(stackA, tmp->sub_index)->length);
         else

@@ -2,7 +2,7 @@
 
 void    smart_double_rotation(stack *stackA, stack *stackB, t_node *nodeA, t_node *nodeB)
 {
-    if (nodeB->flag == nodeB->flag)
+    if (nodeB->flag == nodeA->flag)
     {
         while (nodeB->value != (*stackB)->value && nodeA->value != (*stackA)->value)
         {

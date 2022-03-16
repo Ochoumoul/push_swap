@@ -24,7 +24,7 @@ int	    ft_strlen(char *str);
 int	    ft_atoi(char *str);
 char	*ft_strcat(char *dest, char *src);
 char	*ft_strjoin(char *s1, char *s2);
-char	*ft_substr(char *s, unsigned int start, int len);
+char	*ft_substr(char *s, int start, int len);
 void    free_table(char **table);
 int     push_el(stack *stack, int value);
 void    clear_stack(stack *stack);

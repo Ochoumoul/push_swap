@@ -3,8 +3,10 @@
 void    top_min_element(stack *stackA)
 {
     int     list_half;
+    int i;
     t_node  *min;
 
+    i = 0;
 	min = min_number(stackA);
     list_half = stack_size(stackA) / 2;
     while ((*stackA)->value != min->value)
@@ -39,7 +41,6 @@ int check_sorted_stack(stack *stack)
 void    sort_stack(stack *stackA, stack *stackB)
 {
     int     size;
-    t_node *tmp;
     
     index_stack(stackA);
 	find_list(stackA);
@@ -73,5 +74,6 @@ void    sort_all(stack *stackA, stack *stackB)
         top_pair_elements(stackA, stackB, tmp_a, tmp_b);
         push_stack(stackB, stackA, "pa\n");
     }
+    index_stack(stackA);
     top_min_element(stackA);
 }

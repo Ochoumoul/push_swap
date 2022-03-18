@@ -24,10 +24,8 @@ int main(int argc, char **argv)
 			sort_stack(&a, &b);
 			sort_all(&a, &b);
 		}
-		// print_stack(&a);
 	}
 	else
 		printf("Invalid arguments\n");
-	// while (1);
 	return (0);
 }

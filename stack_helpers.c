@@ -27,8 +27,9 @@ t_node	*max_length(stack *stack)
     t_node *tmp;
 
 	tmp_node = *stack;
+    tmp = *stack;
     max = tmp_node->length;
-	while (tmp_node != NULL)
+	while (tmp_node->next != NULL)
 	{
 		if (max < tmp_node->length)
         {

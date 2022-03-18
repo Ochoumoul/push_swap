@@ -44,6 +44,7 @@ void    sort_stack(stack *stackA, stack *stackB)
     
     index_stack(stackA);
 	find_list(stackA);
+  
     flag_elements(stackA);
     size = stack_size(stackA);
     while (size)

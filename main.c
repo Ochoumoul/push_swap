@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:23:11 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/03/23 14:00:22 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/03/23 14:38:35 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,13 @@ int	main(int argc, char **argv)
 	i = argc - 1;
 	if (argc > 2)
 	{
-		while (i--)
+		while (i > 0)
 		{
 			if (!find_el(&a, ft_atoi(argv[i])))
 				push_el(&a, ft_atoi(argv[i]));
 			else
 				stack_error(&a);
+			i--;
 		}
 		if (!check_sorted_stack(&a))
 		{

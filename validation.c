@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:23:24 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/03/23 13:05:07 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/03/23 14:35:57 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,18 +53,6 @@ int	count_numbers(char *str, char sep)
 	return (words_count);
 }
 
-void	free_table(char **table)
-{
-	int	i;
-
-	i = 0;
-	while (table[i])
-	{
-		free(table[i]);
-		i++;
-	}
-}
-
 char	**validate_args(int argc, char **args, int *elements)
 {
 	int		i;
@@ -84,11 +72,7 @@ char	**validate_args(int argc, char **args, int *elements)
 		while (i < num)
 		{
 			if (!validate_number(numbers[i]))
-			{
-				print_instruction("Error inserting the numbers\n");
-				free_table(numbers);
-				exit(1);
-			}
+				validation_error(1, numbers);
 			i++;
 		}
 	}

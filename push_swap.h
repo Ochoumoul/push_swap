@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:24:10 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/03/23 12:53:29 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/03/23 14:17:32 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ t_node *nodeA, t_node *nodeB);
 void	smart_rr(t_stack *stackA, t_stack *stackB, \
 t_node *nodeA, t_node *nodeB);
 void	free_table(char **table);
+void	validation_error(int code, char **numbers);
 void	clear_stack(t_stack *stack);
 void	pair(t_stack *stack, t_node *node);
 void	flag_best_element(t_stack *stackA, t_stack *stackB);

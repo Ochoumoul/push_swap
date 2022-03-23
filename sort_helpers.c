@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:24:16 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/03/23 13:10:45 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/03/23 14:30:46 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,11 @@ void	flag_best_element(t_stack *stackA, t_stack *stackB)
 	while (tmp != NULL)
 	{
 		if (tmp->flag == find_index(stackA, tmp->sub_index)->flag)
-			tmp->length = max(tmp->length, find_index(stackA, tmp->sub_index)->length);
+			tmp->length = max(tmp->length, find_index(stackA, \
+			tmp->sub_index)->length);
 		else
-			tmp->length = tmp->length + find_index(stackA, tmp->sub_index)->length;
+			tmp->length = tmp->length + find_index(stackA, \
+			tmp->sub_index)->length;
 		tmp = tmp->next;
 	}
 }
@@ -56,12 +58,14 @@ void	search_best_element(t_stack *stackA, t_stack *stackB)
 	tmp_a = *stackA;
 	while (tmp_b != NULL)
 	{
-		tmp_b->length = calculate_instruction(tmp_b, stack_size(stackB), &tmp_b->flag);
+		tmp_b->length = calculate_instruction(tmp_b, stack_size(stackB), \
+		&tmp_b->flag);
 		tmp_b = tmp_b->next;
 	}
 	while (tmp_a != NULL)
 	{
-		tmp_a->length = calculate_instruction(tmp_a, stack_size(stackA), &tmp_a->flag);
+		tmp_a->length = calculate_instruction(tmp_a, stack_size(stackA), \
+		&tmp_a->flag);
 		tmp_a = tmp_a->next;
 	}
 }

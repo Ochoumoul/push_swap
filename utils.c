@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:24:49 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/03/23 12:44:41 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/03/23 14:36:07 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,18 @@ int	max(int value1, int value2)
 		return (value2);
 }
 
+void	free_table(char **table)
+{
+	int	i;
+
+	i = 0;
+	while (table[i])
+	{
+		free(table[i]);
+		i++;
+	}
+}
+
 void	print_instruction(char *str)
 {
 	int	i;
@@ -36,5 +48,15 @@ void	print_instruction(char *str)
 	{
 		write(1, &str[i], 1);
 		i++;
+	}
+}
+
+void	validation_error(int code, char **numbers)
+{
+	if (code == 1)
+	{
+		print_instruction("Error inserting the numbers\n");
+		free_table(numbers);
+		exit(1);
 	}
 }

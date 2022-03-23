@@ -1,26 +1,38 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   validation.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/23 12:23:24 by ochoumou          #+#    #+#             */
+/*   Updated: 2022/03/23 13:05:07 by ochoumou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-int ft_validate_number(char *str)
+int	validate_number(char *str)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    if (str[i])
-    {
-        if ((str[0] == '+' || str[0] == '-') && ft_strlen(str) > 1)
-            i += 1;
-        while (str[i])
-        {
-            if (!ft_isdigit(str[i]))
-                return (0);
-            i++;
-        }
-        return (1);
-    }
-    return (0);
+	i = 0;
+	if (str[i])
+	{
+		if ((str[0] == '+' || str[0] == '-') && ft_strlen(str) > 1)
+			i += 1;
+		while (str[i])
+		{
+			if (!ft_isdigit(str[i]))
+				return (0);
+			i++;
+		}
+		return (1);
+	}
+	return (0);
 }
 
-int	ft_count_numbers(char *str, char sep)
+int	count_numbers(char *str, char sep)
 {
 	int	i;
 	int	words_count;
@@ -41,48 +53,45 @@ int	ft_count_numbers(char *str, char sep)
 	return (words_count);
 }
 
-void    free_table(char **table)
+void	free_table(char **table)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (table[i])
-    {
-        free(table[i]);
-        i++;
-    }
+	i = 0;
+	while (table[i])
+	{
+		free(table[i]);
+		i++;
+	}
 }
 
-char    **validate_args(int argc, char **args, int *elements)
+char	**validate_args(int argc, char **args, int *elements)
 {
-    int i;
-    int num;
-    char *arg;
-    char **numbers;
+	int		i;
+	int		num;
+	char	*arg;
+	char	**numbers;
 
-    arg = NULL;
-    i = 1;
-    if (argc > 1)
-    {
-        while (i < argc)
-        {
-            arg = ft_strjoin(arg, args[i]);
-            i++;
-        }
-        num = ft_count_numbers(arg, ' ');
-        numbers = ft_split(arg, ' ');
-        i = 0;
-        while (i < num)
-        {
-            if (!ft_validate_number(numbers[i]))
-            {
-                print_instruction("Error inserting the numbers\n");
-                free_table(numbers);
-                exit(1);
-            }
-            i++;
-        }
-    }
-    *elements = num;
-    return (numbers);
+	arg = NULL;
+	i = 1;
+	if (argc > 1)
+	{
+		while (i < argc)
+			arg = ft_strjoin(arg, args[i++]);
+		num = count_numbers(arg, ' ');
+		numbers = ft_split(arg, ' ');
+		i = 0;
+		while (i < num)
+		{
+			if (!validate_number(numbers[i]))
+			{
+				print_instruction("Error inserting the numbers\n");
+				free_table(numbers);
+				exit(1);
+			}
+			i++;
+		}
+	}
+	*elements = num;
+	return (numbers);
 }

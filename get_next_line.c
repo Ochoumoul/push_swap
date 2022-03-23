@@ -1,21 +1,31 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/23 12:23:44 by ochoumou          #+#    #+#             */
+/*   Updated: 2022/03/23 12:29:47 by ochoumou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
 
 char	*ft_extract_line(char **buffer_original, char **line)
 {
-	int length;
-	char *temp;
+	int		len;
+	char	*temp;
 
 	temp = NULL;
-	length = 0;
-	while ((*buffer_original)[length] != '\0' && (*buffer_original)[length] != '\n')
-		length++;	
-	if ((*buffer_original)[length] == '\n')
+	len = 0;
+	while ((*buffer_original)[len] != '\0' && (*buffer_original)[len] != '\n')
+		len++;
+	if ((*buffer_original)[len] == '\n')
 	{
-		*line = ft_substr(*buffer_original,0,length + 1);
-		temp = ft_substr(*buffer_original + length + 1, 0 , ft_strlen(*buffer_original) - length);
+		*line = ft_substr(*buffer_original, 0, len + 1);
+		temp = ft_substr(*buffer_original + len + 1, 0, \
+		ft_strlen(*buffer_original) - len);
 	}
 	else
 		*line = ft_strdup(*buffer_original);
@@ -50,8 +60,8 @@ char	*ft_read_buffer(int fd, char *static_buffer)
 
 char	*get_next_line(int fd)
 {
-	char *line;
-	static char *static_buffer;
+	char		*line;
+	static char	*static_buffer;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);

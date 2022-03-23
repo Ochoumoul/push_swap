@@ -1,68 +1,81 @@
-#ifndef PUSH_SWAP_H
-#define PUSH_SWAP_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/23 12:24:10 by ochoumou          #+#    #+#             */
+/*   Updated: 2022/03/23 12:53:29 by ochoumou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include <unistd.h>
-#include <limits.h>
-#include <stdlib.h>
-#include <stdio.h>
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
+
+# include <unistd.h>
+# include <limits.h>
+# include <stdlib.h>
+# include <stdio.h>
 
 typedef struct node {
-    int value;
-    int index;
-    int sub_index;
-    int length;
-    int flag;
-    struct node *next;
-} t_node;
+	int			value;
+	int			index;
+	int			sub_index;
+	int			length;
+	int			flag;
+	struct node	*next;
+}	t_node;
 
-
-typedef t_node *stack;
+typedef t_node	*t_stack;
 
 char	**ft_split(char *s, char c);
-int	    ft_isdigit(int c);
-int	    ft_strlen(char *str);
-int	    ft_atoi(char *str);
+int		ft_isdigit(int c);
+int		ft_strlen(char *str);
+int		ft_atoi(char *str);
 char	*ft_strcat(char *dest, char *src);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_substr(char *s, int start, int len);
-void    free_table(char **table);
-int     push_el(stack *stack, int value);
-void    clear_stack(stack *stack);
-int     find_el(stack *stack, int value);
-int     stack_size(stack *stack);
-int     max(int value1, int value2);
-t_node  *pop_el(stack *stack);
-t_node	*min_number(stack *stack);
-t_node	*max_length(stack *stack);
-t_node	*best_element(stack *stack);
-t_node  *find_index(stack *stack, int index);
-void    sort_all(stack *stackA, stack *stackB);
-void    top_pair_elements(stack *stackA, stack *stackB, t_node *nodeA, t_node *nodeB);
-void    smart_double_rotation(stack *stackA, stack *stackB, t_node *nodeA, t_node *nodeB);
-void    pair(stack *stack , t_node *node);
-void    flag_best_element(stack *stackA, stack *stackB);
-void    top_min_element(stack *stackA);
-void    find_list(stack *stack);
-void    index_stack(stack *stack);
-void    sort_all(stack *stackA, stack *stackB);
-int     check_sorted_stack(stack *stack);
-int     flag_elements(stack *stack);
-int     calculate_instruction(t_node *node, int size, int *desicion);
-void    search_best_element(stack *stackA, stack *stackB);
-void    sort_stack(stack *stackA, stack *stackB);
-int     push_stack(stack *stackA, stack *stackB, char *inst);
-void    pair_elements(stack *stackA, stack *stackB);
-int     rotate_el(stack *stack, char *inst);
-int     max(int value1, int value2);
-int     reverse_rotate_el(stack *stack, char *inst);
-void    swap_el(stack *stack, char *inst);
+int		push_el(t_stack *stack, int value);
+int		find_el(t_stack *stack, int value);
+int		stack_size(t_stack *stack);
+int		max(int value1, int value2);
+t_node	*pop_el(t_stack *stack);
+t_node	*min_number(t_stack *stack);
+t_node	*max_length(t_stack *stack);
+t_node	*best_element(t_stack *stack);
+t_node	*find_index(t_stack *stack, int index);
+void	sort_all(t_stack *stackA, t_stack *stackB);
+void	smart_top(t_stack *stackA, t_stack *stackB, \
+t_node *nodeA, t_node *nodeB);
+void	smart_rr(t_stack *stackA, t_stack *stackB, \
+t_node *nodeA, t_node *nodeB);
+void	free_table(char **table);
+void	clear_stack(t_stack *stack);
+void	pair(t_stack *stack, t_node *node);
+void	flag_best_element(t_stack *stackA, t_stack *stackB);
+void	top_min_element(t_stack *stackA);
+void	find_list(t_stack *stack);
+void	index_stack(t_stack *stack);
+void	sort_all(t_stack *stackA, t_stack *stackB);
+void	swap_el(t_stack *stack, char *inst);
 void	print_instruction(char *str);
-void    swap_both(stack *stackA, stack *stackB);
-void    rotate_both(stack *stackA, stack *stackB);
-void    reverse_rotate_both(stack *stackA, stack *stackB);
-int     find_el(stack *stack, int value);
-void    clear_stack(stack *stack);
-void    stack_error(stack *stack);
-void    print_stack(stack *stack);
+void	swap_both(t_stack *stackA, t_stack *stackB);
+void	rotate_both(t_stack *stackA, t_stack *stackB);
+void	reverse_rotate_both(t_stack *stackA, t_stack *stackB);
+void	search_best_element(t_stack *stackA, t_stack *stackB);
+void	sort_stack(t_stack *stackA, t_stack *stackB);
+void	clear_stack(t_stack *stack);
+void	stack_error(t_stack *stack);
+void	print_stack(t_stack *stack);
+void	pair_elements(t_stack *stackA, t_stack *stackB);
+int		check_sorted_stack(t_stack *stack);
+int		flag_elements(t_stack *stack);
+int		calculate_instruction(t_node *node, int size, int *desicion);
+int		push_stack(t_stack *stackA, t_stack *stackB, char *inst);
+int		rotate_el(t_stack *stack, char *inst);
+int		max(int value1, int value2);
+int		reverse_rotate_el(t_stack *stack, char *inst);
+int		find_el(t_stack *stack, int value);
 
 #endif

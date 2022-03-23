@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libft.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/23 12:23:20 by ochoumou          #+#    #+#             */
+/*   Updated: 2022/03/23 12:34:38 by ochoumou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int	ft_strlen(char *str)
 {
-	int i;
-	i = 0;
+	int	i;
 
+	i = 0;
 	if (!str)
 		return (0);
 	while (str[i])
@@ -39,20 +51,22 @@ char	*ft_strjoin(char *s1, char *s2)
 	str = (char *)malloc(sizeof(char) * ((s1len + s2len) + 1));
 	if (!str)
 		return (NULL);
-    str[0] = '\0';
+	str[0] = '\0';
 	if (s1)
-        ft_strcat(str, s1);
+	{
+		ft_strcat(str, s1);
 		ft_strcat(str, " ");
+	}
 	if (s2)
 		ft_strcat(str, s2);
-    free(s1);
+	free(s1);
 	return (str);
 }
 
 char	*ft_substr(char *s, int start, int len)
 {
 	char	*str;
-	int	i;
+	int		i;
 
 	if (!s)
 		return (NULL);

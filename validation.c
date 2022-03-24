@@ -6,28 +6,34 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:23:24 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/03/23 14:35:57 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/03/24 11:30:44 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <limits.h>
 
 int	validate_number(char *str)
 {
 	int	i;
-
+	int number;
+	
 	i = 0;
-	if (str[i])
+	number = atoi(str);
+	if (number > INT_MIN && number < INT_MAX)
 	{
-		if ((str[0] == '+' || str[0] == '-') && ft_strlen(str) > 1)
-			i += 1;
-		while (str[i])
+		if (str[i])
 		{
-			if (!ft_isdigit(str[i]))
-				return (0);
-			i++;
+			if ((str[0] == '+' || str[0] == '-') && ft_strlen(str) > 1)
+				i += 1;
+			while (str[i])
+			{
+				if (!ft_isdigit(str[i]))
+					return (0);
+				i++;
+			}
+			return (1);
 		}
-		return (1);
 	}
 	return (0);
 }
@@ -60,7 +66,9 @@ char	**validate_args(int argc, char **args, int *elements)
 	char	*arg;
 	char	**numbers;
 
+	numbers = NULL;
 	arg = NULL;
+	num = 0;
 	i = 1;
 	if (argc > 1)
 	{

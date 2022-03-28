@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:24:10 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/03/24 11:26:40 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/03/28 15:00:40 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,8 @@ int		rotate_el(t_stack *stack, char *inst);
 int		max(int value1, int value2);
 int		reverse_rotate_el(t_stack *stack, char *inst);
 int		find_el(t_stack *stack, int value);
+// Checker
+
+char    *get_next_line(int fd);
 
 #endif

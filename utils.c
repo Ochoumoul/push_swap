@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:24:49 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/03/23 14:36:07 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/04/01 13:07:45 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,11 @@ void	validation_error(int code, char **numbers)
 	{
 		print_instruction("Error inserting the numbers\n");
 		free_table(numbers);
+		exit(1);
+	}
+	else if (code == 2)
+	{
+		print_instruction("Error\n");
 		exit(1);
 	}
 }

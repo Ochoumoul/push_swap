@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:24:42 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/03/23 12:56:27 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/04/01 13:03:57 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,22 @@ void	index_stack(t_stack *stack)
 	{
 		tmp->index = i++;
 		tmp = tmp->next;
+	}
+}
+
+void	insert_numbers(t_stack *stack, char **argv, int argc)
+{
+	int i;
+
+	i = 0;
+	argv = validate_args(argc, argv, &argc);
+	i = argc - 1;
+	while (i >= 0)
+	{
+		if (!find_el(stack, ft_atoi(argv[i])))
+			push_el(stack, ft_atoi(argv[i]));
+		else
+			stack_error(stack);
+		i--;
 	}
 }

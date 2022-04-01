@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:24:20 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/03/24 14:34:32 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/04/01 13:04:09 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,7 @@ int	check_sorted_stack(t_stack *stack)
 		}
 		return (1);
 	}
-	else
-		return (0);
+	return (0);
 }
 
 void	sort_stack(t_stack *stackA, t_stack *stackB)

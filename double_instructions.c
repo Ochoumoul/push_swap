@@ -6,11 +6,13 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:23:18 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/03/23 12:57:01 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/04/01 13:32:11 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+// I need to change something about the way i print instruction because the checker is printing instructions that is srewing with the checker result.
 
 void	swap_both(t_stack *stackA, t_stack *stackB)
 {

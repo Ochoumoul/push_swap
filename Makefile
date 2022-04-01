@@ -6,7 +6,7 @@
 #    By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/23 12:23:16 by ochoumou          #+#    #+#              #
-#    Updated: 2022/03/24 11:31:55 by ochoumou         ###   ########.fr        #
+#    Updated: 2022/04/01 12:58:53 by ochoumou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,3 +34,6 @@ fclean: clean
 	rm -rf $(NAME)
 
 re: fclean all
+
+# The source files for the checker:
+# checker.c libft.c validation.c ft_split.c utils.c double_instructions.c stack.c get_next_line.c instructions.c stack_utils.c

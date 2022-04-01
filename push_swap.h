@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:24:10 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/03/28 15:00:40 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/04/01 12:54:50 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,11 @@ int		check_sorted_stack(t_stack *stack);
 int		flag_elements(t_stack *stack);
 int		calculate_instruction(t_node *node, int size, int *desicion);
 int		push_stack(t_stack *stackA, t_stack *stackB, char *inst);
-int		rotate_el(t_stack *stack, char *inst);
+void	rotate_el(t_stack *stack, char *inst);
 int		max(int value1, int value2);
-int		reverse_rotate_el(t_stack *stack, char *inst);
+void	reverse_rotate_el(t_stack *stack, char *inst);
 int		find_el(t_stack *stack, int value);
+void	insert_numbers(t_stack *stack, char **argv, int argc);
 // Checker
 
 char    *get_next_line(int fd);

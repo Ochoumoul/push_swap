@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:24:53 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/03/23 12:55:53 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/04/01 14:33:08 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void	smart_rr(t_stack *stackA, t_stack *stackB, t_node *nodeA, t_node *nodeB)
 		nodeA->value != (*stackA)->value)
 		{
 			if (nodeB->flag == 2)
-				reverse_rotate_both(stackA, stackB);
+				reverse_rotate_both(stackA, stackB, "rrr\n");
 			else
-				rotate_both(stackA, stackB);
+				rotate_both(stackA, stackB, "rr\n");
 		}
 	}
 }

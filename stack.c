@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:24:47 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/03/23 12:53:56 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/04/01 14:54:54 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ t_node	*pop_el(t_stack *stack)
 	if (*stack == NULL)
 		return (NULL);
 	el = (t_node *)malloc(sizeof(t_node));
+	if (!el)
+		return (NULL);
 	el->value = (*stack)->value;
 	el->index = (*stack)->index;
 	tmp = *stack;

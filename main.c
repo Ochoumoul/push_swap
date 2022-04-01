@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:23:11 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/04/01 13:27:35 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/04/01 14:42:40 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int	main(int argc, char **argv)
 	if (argc > 2)
 	{
 		insert_numbers(&a, argv, argc);
-		// printf("Before the seg\n");
 		if (!check_sorted_stack(&a))
 		{
 			sort_stack(&a, &b);

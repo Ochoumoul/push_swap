@@ -44,11 +44,11 @@ void    apply_single(char *inst, t_stack *stackA, t_stack *stackB)
 void    apply_double(char *inst, t_stack *stackA, t_stack *stackB)
 {
     if (strcmp(inst, "ss\n") == 0)
-        swap_both(stackB, stackA);
+        swap_both(stackB, stackA,"");
     else if (strcmp(inst, "rr\n") == 0)
-        rotate_both(stackA, stackB);
+        rotate_both(stackA, stackB,"");
     else if (strcmp(inst, "rrr\n") == 0)
-        reverse_rotate_both(stackA, stackB);
+        reverse_rotate_both(stackA, stackB,"");
 }
 
 void    checker(t_stack *stackA, t_stack *stackB)

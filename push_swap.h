@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:24:10 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/04/01 12:54:50 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/04/01 14:34:07 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ void	index_stack(t_stack *stack);
 void	sort_all(t_stack *stackA, t_stack *stackB);
 void	swap_el(t_stack *stack, char *inst);
 void	print_instruction(char *str);
-void	swap_both(t_stack *stackA, t_stack *stackB);
-void	rotate_both(t_stack *stackA, t_stack *stackB);
-void	reverse_rotate_both(t_stack *stackA, t_stack *stackB);
+void	swap_both(t_stack *stackA, t_stack *stackB, char *inst);
+void	rotate_both(t_stack *stackA, t_stack *stackB, char *inst);
+void	reverse_rotate_both(t_stack *stackA, t_stack *stackB, char *inst);
 void	search_best_element(t_stack *stackA, t_stack *stackB);
 void	sort_stack(t_stack *stackA, t_stack *stackB);
 void	clear_stack(t_stack *stack);

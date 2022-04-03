@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:24:10 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/04/01 14:34:07 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/04/03 01:33:01 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ char	**ft_split(char *s, char c);
 int		ft_isdigit(int c);
 int		ft_strlen(char *str);
 int		ft_atoi(char *str);
+char 	*ft_strdup(char *str);
 char	*ft_strcat(char *dest, char *src);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_substr(char *s, int start, int len);
@@ -52,7 +53,7 @@ void	smart_rr(t_stack *stackA, t_stack *stackB, \
 t_node *nodeA, t_node *nodeB);
 void	free_table(char **table);
 void	validation_error(int code, char **numbers);
-char	**validate_args(int argc, char **args, int *elements);
+char	**parse_input(int argc, char **args, int *elements);
 void	clear_stack(t_stack *stack);
 void	pair(t_stack *stack, t_node *node);
 void	flag_best_element(t_stack *stackA, t_stack *stackB);

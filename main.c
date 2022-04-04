@@ -6,12 +6,11 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:23:11 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/04/01 14:42:40 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/04/04 01:28:13 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
 
 int	main(int argc, char **argv)
 {
@@ -32,6 +31,6 @@ int	main(int argc, char **argv)
 		}
 	}
 	else
-		printf("Invalid arguments\n");
+		print_instruction("Invalid Arguments\n");
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:30:26 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/04/01 12:25:57 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/04/04 01:28:46 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,6 @@ void	print_stack(t_stack *stack)
 	tmp = *stack;
 	while (tmp != NULL)
 	{
-		printf("Element:[%d] Index[%d]\n ", tmp->value, tmp->index);
 		tmp = tmp->next;
 	}
 }

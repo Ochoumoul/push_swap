@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:24:25 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/03/23 13:03:58 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/04/04 02:55:28 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,23 @@ t_node	*best_element(t_stack *stack)
 		tmp_node = tmp_node->next;
 	}
 	return (tmp);
+}
+
+int	check_sorted_stack(t_stack *stack)
+{
+	t_node	*tmp;
+
+	if (*stack)
+	{
+		tmp = *stack;
+		while (tmp->next != NULL)
+		{
+			if (tmp->value < tmp->next->value)
+				tmp = tmp->next;
+			else
+				return (0);
+		}
+		return (1);
+	}
+	return (0);
 }

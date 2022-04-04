@@ -1,70 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validation.c                                       :+:      :+:    :+:   */
+/*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:23:24 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/04/03 01:36:11 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/04/04 01:19:58 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <limits.h>
-
-void	ft_error()
-{
-	printf("Error\n");
-	exit(1);
-}
-
-int	validate_number(char *str)
-{
-	int	i;
-	int number;
-	
-	i = 0;
-	number = atoi(str);
-	if (number > INT_MIN && number < INT_MAX)
-	{
-		if (str[i])
-		{
-			if ((str[0] == '+' || str[0] == '-') && ft_strlen(str) > 1)
-				i += 1;
-			while (str[i])
-			{
-				if (!ft_isdigit(str[i]))
-					return (0);
-				i++;
-			}
-			return (1);
-		}
-	}
-	return (0);
-}
-
-int		count_elements(char **table)
-{
-	int count;
-	int i;
-
-	i = 0;
-	count = 0;
-	if (table == NULL)
-		return (count);
-	while (table[i++])
-		count++;
-	return (count);
-}
 
 char	**join_tables(char **table, char **table2)
 {
-	int size;
-	int i;
-	int j;
-	char **str;
-	
+	int		size;
+	int		i;
+	int		j;
+	char	**str;
+
 	i = 0;
 	j = 0;
 	size = count_elements(table) + count_elements(table2);
@@ -104,7 +58,7 @@ int	count_numbers(char *str, char sep)
 
 void	ft_validate_table(char **table)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (table[i])
@@ -116,13 +70,12 @@ void	ft_validate_table(char **table)
 	}
 }
 
-
 char	**parse_input(int argc, char **args, int *elements)
 {
-	int i;
-	char **table;
-	char **split;
-	
+	int		i;
+	char	**table;
+	char	**split;
+
 	i = 1;
 	table = NULL;
 	if (argc > 1)

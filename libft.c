@@ -6,12 +6,11 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:23:20 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/04/02 23:21:13 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/04/04 01:34:27 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
 
 int	ft_strlen(char *str)
 {
@@ -67,9 +66,9 @@ char	*ft_substr(char *s, int start, int len)
 
 int	ft_atoi(char *str)
 {
-	int		i;
-	int		sign;
-	int		res;
+	long	i;
+	long	sign;
+	long	res;
 
 	i = 0;
 	res = 0;

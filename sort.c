@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:24:20 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/04/01 13:04:09 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/04/04 02:55:18 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,25 +28,6 @@ void	top_min_element(t_stack *stackA)
 		else
 			rotate_el(stackA, "ra\n");
 	}
-}
-
-int	check_sorted_stack(t_stack *stack)
-{
-	t_node	*tmp;
-
-	if (*stack)
-	{
-		tmp = *stack;
-		while (tmp->next != NULL)
-		{
-			if (tmp->value < tmp->next->value)
-				tmp = tmp->next;
-			else
-				return (0);
-		}
-		return (1);
-	}
-	return (0);
 }
 
 void	sort_stack(t_stack *stackA, t_stack *stackB)

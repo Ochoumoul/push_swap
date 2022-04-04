@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:24:42 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/04/03 01:35:30 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/04/03 23:32:53 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	index_stack(t_stack *stack)
 
 void	insert_numbers(t_stack *stack, char **argv, int argc)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	argv = parse_input(argc, argv, &argc);

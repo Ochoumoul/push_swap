@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:23:11 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/04/04 01:28:13 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/04/05 02:02:11 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,15 @@ int	main(int argc, char **argv)
 		insert_numbers(&a, argv, argc);
 		if (!check_sorted_stack(&a))
 		{
-			sort_stack(&a, &b);
-			sort_all(&a, &b);
+			if (stack_size(&a) == 3)
+				sort_three(&a);
+			else if (stack_size(&a) == 5)
+				sort_five(&a, &b);
+			else
+			{
+				sort_stack(&a, &b);
+				sort_all(&a, &b);
+			}
 		}
 	}
 	else

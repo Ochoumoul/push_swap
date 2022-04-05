@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:24:47 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/04/01 14:54:54 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/04/05 00:00:03 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	clear_stack(t_stack *stack)
 
 void	stack_error(t_stack *stack)
 {
-	write(1, "Stack Error:\n", 14);
+	write(1, "Error\n", 6);
 	clear_stack(stack);
 	exit(0);
 }

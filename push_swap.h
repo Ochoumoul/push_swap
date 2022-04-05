@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:24:10 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/04/04 01:39:48 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/04/05 01:56:59 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ void	flag_best_element(t_stack *stackA, t_stack *stackB);
 void	top_min_element(t_stack *stackA);
 void	find_list(t_stack *stack);
 void	index_stack(t_stack *stack);
+void    sort_three(t_stack *stack_a);
+void    sort_five(t_stack *stack_a, t_stack *stack_b);
 void	sort_all(t_stack *stackA, t_stack *stackB);
 void	swap_el(t_stack *stack, char *inst);
 void	print_instruction(char *str);

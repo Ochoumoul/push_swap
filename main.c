@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:23:11 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/04/05 02:02:11 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/04/05 02:32:07 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,7 @@ int	main(int argc, char **argv)
 			else if (stack_size(&a) == 5)
 				sort_five(&a, &b);
 			else
-			{
-				sort_stack(&a, &b);
 				sort_all(&a, &b);
-			}
 		}
 	}
 	else

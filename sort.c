@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:24:20 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/04/04 02:55:18 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/04/05 02:31:58 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	sort_all(t_stack *stackA, t_stack *stackB)
 	t_node	*tmp_b;
 	t_node	*tmp_a;
 
+	sort_stack(stackA, stackB);
 	while (stack_size(stackB) != 0)
 	{
 		index_stack(stackA);

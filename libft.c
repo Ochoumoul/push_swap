@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:23:20 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/04/04 01:34:27 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/04/06 00:15:26 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,11 @@ char	*ft_substr(char *s, int start, int len)
 	return (str);
 }
 
-int	ft_atoi(char *str)
+long	ft_atoi(char *str)
 {
-	long	i;
-	long	sign;
-	long	res;
+	long long	i;
+	long long	sign;
+	long long	res;
 
 	i = 0;
 	res = 0;

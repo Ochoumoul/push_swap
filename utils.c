@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:24:49 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/04/03 01:35:37 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/04/06 00:10:30 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	free_table(char **table)
 	int	i;
 
 	i = 0;
+	if (!table)
+		return ;
 	while (table[i])
 	{
 		free(table[i]);
@@ -55,7 +57,7 @@ void	validation_error(int code, char **numbers)
 {
 	if (code == 1)
 	{
-		print_instruction("Error inserting the numbers\n");
+		print_instruction("Error\n");
 		free_table(numbers);
 		exit(1);
 	}

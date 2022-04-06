@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:23:24 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/04/04 01:19:58 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/04/06 00:03:25 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ void	ft_validate_table(char **table)
 	int	i;
 
 	i = 0;
+	if (!table)
+		return ;
 	while (table[i])
 	{
 		if (validate_number(table[i]))

@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 01:18:06 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/04/04 02:56:54 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/04/06 00:17:19 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ int	ft_strcmp(char *s1, char *s2)
 
 int	validate_number(char *str)
 {
-	int	i;
-	int	number;
+	int		i;
+	long	number;
 
 	i = 0;
 	number = ft_atoi(str);

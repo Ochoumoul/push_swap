@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:23:11 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/04/05 02:32:07 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/04/06 02:50:34 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(int argc, char **argv)
 	a = NULL;
 	b = NULL;
 	i = 0;
-	if (argc > 2)
+	if (argc >= 2)
 	{
 		insert_numbers(&a, argv, argc);
 		if (!check_sorted_stack(&a))
@@ -34,7 +34,5 @@ int	main(int argc, char **argv)
 				sort_all(&a, &b);
 		}
 	}
-	else
-		print_instruction("Invalid Arguments\n");
 	return (0);
 }

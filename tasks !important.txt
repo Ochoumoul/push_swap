@@ -1,2 +1,0 @@
-* I need to fix the int limits ! This task is not done yet
-* I need to create the algo for sorting 3 number and 5

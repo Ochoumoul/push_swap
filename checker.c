@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 00:33:17 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/04/04 01:41:27 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/04/06 02:50:28 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	apply_single(char *inst, t_stack *stackA, t_stack *stackB)
 	else if (ft_strcmp(inst, "rrb\n") == 0)
 		reverse_rotate_el(stackB, "");
 	else if (ft_strcmp(inst, "sa\n") == 0)
-		swap_el(stackB, "");
+		swap_el(stackA, "");
 	else if (ft_strcmp(inst, "sb\n") == 0)
 		swap_el(stackB, "");
 }

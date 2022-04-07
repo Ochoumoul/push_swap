@@ -6,12 +6,11 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:30:26 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/04/05 00:00:56 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/04/07 00:59:11 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
 int	push_stack(t_stack *stackA, t_stack *stackB, char *inst)
 {
@@ -93,7 +92,6 @@ void	print_stack(t_stack *stack)
 	tmp = *stack;
 	while (tmp != NULL)
 	{
-		printf("[%d]\n", tmp->value);
 		tmp = tmp->next;
 	}
 }

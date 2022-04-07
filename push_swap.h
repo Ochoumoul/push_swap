@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:24:10 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/04/06 00:15:43 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/04/07 00:58:00 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdio.h>
 
 # define INT_MIN -2147483648
 # define INT_MAX 2147483647

@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:24:42 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/04/06 00:49:27 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/04/07 01:09:00 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void	index_stack(t_stack *stack)
 void	insert_numbers(t_stack *stack, char **argv, int argc)
 {
 	int	i;
+	int	number;
 
 	i = 0;
 	argv = parse_input(argc, argv, &argc);
@@ -66,8 +67,9 @@ void	insert_numbers(t_stack *stack, char **argv, int argc)
 		i = argc - 1;
 		while (i >= 0)
 		{
-			if (!find_el(stack, ft_atoi(argv[i])))
-				push_el(stack, ft_atoi(argv[i]));
+			number = ft_atoi(argv[i]);
+			if (!find_el(stack, number))
+				push_el(stack, number);
 			else
 				stack_error(stack);
 			i--;

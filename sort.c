@@ -6,28 +6,25 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:24:20 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/04/05 23:58:49 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/04/07 02:19:53 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	top_min_element(t_stack *stackA)
+void	top_min_element(t_stack *stack)
 {
 	int		list_half;
-	int		i;
 	t_node	*min;
 
-	i = 0;
-	min = min_number(stackA);
-	list_half = stack_size(stackA) / 2;
-	while ((*stackA)->value != min->value)
-	{
-		if (min->index > list_half)
-			reverse_rotate_el(stackA, "rra\n");
-		else
-			rotate_el(stackA, "ra\n");
-	}
+	min = min_number(stack);
+	list_half = stack_size(stack) / 2;
+	if (min->index > list_half)
+		while ((*stack)->value != min->value)
+			reverse_rotate_el(stack, "rra\n");
+	else
+		while ((*stack)->value != min->value)
+			rotate_el(stack, "ra\n");
 }
 
 void	sort_stack(t_stack *stackA, t_stack *stackB)

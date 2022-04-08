@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 00:33:17 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/04/06 02:50:28 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/04/08 21:53:53 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,5 @@ int	main(int argc, char **argv)
 		}
 		checker(&stack_a, &stack_b);
 	}
-	else
-		print_instruction("Error\n");
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:24:42 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/04/07 01:09:00 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/04/11 03:24:24 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ void	insert_numbers(t_stack *stack, char **argv, int argc)
 				stack_error(stack);
 			i--;
 		}
+		free_table(argv);
+		free(argv);
 	}
 	else
 		validation_error(2, NULL);

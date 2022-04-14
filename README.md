@@ -14,4 +14,6 @@ This project is about sorting some data on **stack**, the data will be a bunch o
 
 Solving this problem i've used the longest increasing subsequent algorithm, which helps me find the list of numbers that is already sorted. then i push to **stack B** the elements that do not belong to the list. After that i should figure out the best element that could be returned from **stack B** to **stack A**. Figuring out the best element requires determining how far that element and its pair from the top of stack. When you find the best element you have nothing left to do but doing the necessary instructions to make that element and its pair a the top of the stacks then push that element from **stack B** to **stack A**. when the **stack B** size is zero you might find yourself with an unsorted stack (am talking about **stackA**) but once you top the minimum element you'll find the your stack have been sorted successfully. 
 
-<img src="" />
+## Small Demo (Image does use LIS Algorithm for sort)
+
+<img src="/media/push_swap_demo.git" />

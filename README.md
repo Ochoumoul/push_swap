@@ -16,4 +16,4 @@ Solving this problem i've used the longest increasing subsequent algorithm, whic
 
 ## Small Demo (Image does use LIS Algorithm for sort)
 
-<img src="/media/push_swap_demo.git" />
+![Push Swap Demo](https://github.com/Ochoumoul/push_swap/blob/master/media/push_swap_demo.gif?raw=true)
